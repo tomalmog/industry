@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Industry"
-config/features=PackedStringArray("4.3", "Forward Plus")
+run/main_scene="res://world.tscn"
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Industry"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true

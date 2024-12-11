@@ -1,0 +1,71 @@
+[gd_scene load_steps=16 format=3 uid="uid://dmru1rftwki7n"]
+
+[ext_resource type="Texture2D" uid="uid://c8ahj7fs452g4" path="res://assets/outline.png" id="2_k0q12"]
+[ext_resource type="Script" path="res://fill.gd" id="3_5ls8h"]
+[ext_resource type="Texture2D" uid="uid://be0k8qm0g22ln" path="res://assets/base.png" id="3_uifx1"]
+[ext_resource type="Texture2D" uid="uid://cg40yvrm38gsg" path="res://assets/belt.png" id="4_bcefr"]
+[ext_resource type="Script" path="res://hover.gd" id="4_e58c6"]
+[ext_resource type="Script" path="res://scenes/place.gd" id="5_eaeuu"]
+[ext_resource type="Texture2D" uid="uid://8tp30nshh7iv" path="res://assets/smelter.png" id="5_y20uu"]
+[ext_resource type="Texture2D" uid="uid://d23w2tm4cju5p" path="res://assets/cutter.png" id="7_0srbq"]
+[ext_resource type="Script" path="res://scenes/camera.gd" id="9_gwmok"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ojuy"]
+texture = ExtResource("3_uifx1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k1prl"]
+texture = ExtResource("2_k0q12")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6vamu"]
+texture = ExtResource("4_bcefr")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hr4j"]
+texture = ExtResource("5_y20uu")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8ph8"]
+texture = ExtResource("7_0srbq")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1cmdt"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_2ojuy")
+sources/3 = SubResource("TileSetAtlasSource_6hr4j")
+sources/2 = SubResource("TileSetAtlasSource_6vamu")
+sources/1 = SubResource("TileSetAtlasSource_k1prl")
+sources/4 = SubResource("TileSetAtlasSource_s8ph8")
+
+[node name="world" type="Node2D"]
+
+[node name="fillLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_1cmdt")
+script = ExtResource("3_5ls8h")
+
+[node name="placedLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_1cmdt")
+script = ExtResource("5_eaeuu")
+
+[node name="hoverLayer" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 20, 0.392)
+tile_set = SubResource("TileSet_1cmdt")
+script = ExtResource("4_e58c6")
+
+[node name="camera" type="Camera2D" parent="."]
+script = ExtResource("9_gwmok")

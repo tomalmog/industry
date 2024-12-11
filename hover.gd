@@ -1,29 +1,24 @@
 extends TileMapLayer
 
-var prevTile = Vector2i(0, 0)
-var tile = Vector2i(0, 0)
-var gridSize = 16;
+var prev_cell = Vector2i(0, 0)
+var curr_cell = Vector2i(0, 0)
 var Dic = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	#for x in gridSize:
-		#for y in gridSize:
-			#set_cell(Vector2(x, y), 1, Vector2(0, 0), 0)
 	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	prevTile = tile;
-	tile = local_to_map(get_global_mouse_position() / 2)
+	prev_cell = curr_cell;
+	curr_cell = local_to_map(get_global_mouse_position())
 	
-	if prevTile == tile:
-		pass
-	else:
-		set_cell(prevTile)
-		set_cell(tile, 1, Vector2(0, 0), 0)
+	set_cell(prev_cell)
 	
+	if BuildData.current_tile_id != BuildData.no_selection:
+		set_cell(curr_cell, BuildData.current_tile_id, Vector2(BuildData.current_tile_rotations[BuildData.current_tile_id], 0), 0)
+	
+
 	pass

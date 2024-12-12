@@ -1,11 +1,12 @@
 extends TileMapLayer
 
-
+var hub_size: int
 var unselected_last_click = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	hub_size = get_node("../fillLayer").hub_size
 	pass # Replace with function body.
 
 
@@ -32,6 +33,11 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("left_click"): 
 		if BuildData.current_tile_id != BuildData.no_selection:
+			
+			if !(cell_position.x < -hub_size || cell_position.x >= hub_size || cell_position.y < -hub_size || cell_position.y >= hub_size):
+				return
+				
+				
 			place_tile(cell_position)
 		
 		

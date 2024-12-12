@@ -19,6 +19,9 @@ func _process(delta):
 	
 	if Input.is_action_pressed("speed_up"):
 		input_direction *= speed_multiplier
+		
+	if Input.is_action_just_pressed("center"):
+		position = Vector2(0, 0)
 	
 	position += input_direction * pan_speed * delta
 

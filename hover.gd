@@ -17,6 +17,11 @@ func _process(delta: float) -> void:
 	
 	set_cell(prev_cell)
 	
+	var hub_size = get_node("../fillLayer").hub_size
+	
+	if !(curr_cell.x < -hub_size || curr_cell.x >= hub_size || curr_cell.y < -hub_size || curr_cell.y >= hub_size):
+		return
+	
 	if BuildData.current_tile_id != BuildData.no_selection:
 		set_cell(curr_cell, BuildData.current_tile_id, Vector2(BuildData.current_tile_rotations[BuildData.current_tile_id], 0), 0)
 	

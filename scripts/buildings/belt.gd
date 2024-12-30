@@ -44,10 +44,18 @@ func move_item_to_next_tile(target_position: Vector2) -> void:
 	"""
 	
 	var next_tile = WorldManager.get_tile(target_position)
+	
+	#stored_item.move_to_building(next_tile)
+	#stored_item = null;
+	
 	next_tile.stored_item = stored_item;
 	next_tile.stored_item.move(next_tile.position)
 	
 	stored_item = null;
+	
+	print(next_tile.position)
+	
+	
 	
 	
 	

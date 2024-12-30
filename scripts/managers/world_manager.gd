@@ -48,8 +48,6 @@ func run_game_tick() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
-	
 	pass
 
 func get_tile(pos: Vector2):
@@ -78,3 +76,10 @@ func create_item(type: int) -> Node:
 
 	add_child(new_item)
 	return new_item
+	
+
+func spawn_item(building: Node):
+	var item_scene = preload("res://scenes/item.tscn")
+	var new_item = item_scene.instantiate()
+	
+	building.add_child(new_item)

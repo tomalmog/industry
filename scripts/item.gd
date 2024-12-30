@@ -19,6 +19,13 @@ func _ready():
 	pass
 	
 func _process(delta: float) -> void:
+	
+	if stored_by:
+		position = stored_by.position
+	else:
+		print("error")
+
+	
 	if is_moving:
 		var direction = (target_position - position).normalized()
 		var distance = speed * delta  # Calculate distance to move this frame
@@ -41,10 +48,20 @@ func move_to(new_position: Vector2) -> void:
 	is_moving = true
 	
 
+func move_to_building(new_building: Node):
+	position = new_building.position
+	stored_by = new_building
+	
+	
+	
+
+
+
 # Draw the item (if needed for custom rendering)
 func _draw():
 	if texture:
 		draw_texture(texture, position)
+	draw_circle(global_position, 5, Color(1, 0, 0))
 
 # Update the item's logic (called manually or via another system)
 func update_item(delta: float):

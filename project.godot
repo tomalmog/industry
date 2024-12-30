@@ -17,7 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-BuildData="*res://build_data.gd"
+BuildData="*res://scripts/managers/build_data.gd"
+BuildSelection="*res://scripts/managers/build_selection.gd"
+WorldManager="*res://scripts/managers/world_manager.gd"
 
 [dotnet]
 

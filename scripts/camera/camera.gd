@@ -32,12 +32,6 @@ func _process(delta):
 		zoom_camera(-zoom_speed)
 
 
-
-	# Mouse wheel zoom support
-	#var scroll_input = Input.get_mouse_scroll_y()
-	#if scroll_input != 0:
-		#zoom_camera(scroll_input * zoom_speed * -0.1)
-
 func zoom_camera(delta_zoom: float):
 	# Adjust zoom while clamping to min/max limits
 	var new_zoom = zoom + Vector2(delta_zoom, delta_zoom)

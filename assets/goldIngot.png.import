@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd230yspcsw7u"
-path="res://.godot/imported/goldIngot.webp-683f2223ac5eb9d48b79780dc9358d29.ctex"
+uid="uid://bkgflc2lkycyi"
+path="res://.godot/imported/goldIngot.png-0f3fba2c504ec70c0ae128a6df514d28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/goldIngot.webp"
-dest_files=["res://.godot/imported/goldIngot.webp-683f2223ac5eb9d48b79780dc9358d29.ctex"]
+source_file="res://assets/goldIngot.png"
+dest_files=["res://.godot/imported/goldIngot.png-0f3fba2c504ec70c0ae128a6df514d28.ctex"]
 
 [params]
 

@@ -11,6 +11,10 @@ extends Camera2D
 
 
 func _process(delta):
+	
+	
+
+	
 	# Camera panning
 	var input_direction = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),

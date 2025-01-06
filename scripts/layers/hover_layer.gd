@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	
 	set_cell(prev_cell)
 	
-	var hub_size = get_node("../backgroundLayer").hub_size
+	var hub_size = get_node("../BackgroundLayer").hub_size
 	
 	if !(curr_cell.x < -hub_size || curr_cell.x >= hub_size || curr_cell.y < -hub_size || curr_cell.y >= hub_size):
 		return

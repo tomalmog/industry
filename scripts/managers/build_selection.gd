@@ -16,6 +16,9 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("cutter"):
 		building_selected(BuildData.CUTTER_ID)
+	
+	if Input.is_action_just_pressed("harvester"):
+		building_selected(BuildData.HARVESTER_ID)
 		
 	if Input.is_action_just_pressed("rotate"):
 		rotate_selected_tile()

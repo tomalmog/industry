@@ -1,29 +1,36 @@
 # Building.gd
 extends Node2D
+class_name Building
+
 
 # Base Building Class - Abstract Class
 # Defines the general behavior and structure for all buildings.
 
 # Properties
 @export var type: int                            # type of building e.g 0: Smelter, 1: Harvester
-@export var tilemap_pos: Vector2                 # position on tilemap
+@export var grid_position: Vector2                 # position on tilemap
 @export var direction: Vector2 = Vector2.UP      # direction building is facing, default is up
-@export var stored_item: Node = null             # reference to the item that is currently stored by the building 
-
-#@export var max_inventory_size: int = 10  # Maximum number of items the building can hold
-#var inventory: Array = []               # Inventory system for storing items
+@export var stored_item: Item = null             # reference to the item that is currently stored by the building 
+@export var moving_in_item: Node = null
 
 # Called when the node enters the scene tree for the first time
 func _ready():
 	pass
 
-# Move an item into or out of the building
-# Polymorphic method to be overridden by derived classes
-func move(item: Node):
+# Polymorphic methods to be overridden by derived classes
+func move():
+	var next_building = BuildingManager.get_building(get_next())
+	
+	stored_item.stored_by = next_building
+	next_building.moving_in_item = stored_item
+	
+	stored_item = null
 	pass  # To be implemented in child classes
+	
+func get_next():
+	return grid_position + direction
 
 # Interact with an item
-# Polymorphic method to be overridden by derived classes
 func interact(item: Node):
 	pass  # To be implemented in child classes (e.g., crafting, processing)
 
@@ -49,7 +56,6 @@ func remove_item(item: Node) -> bool:
 		return true;
 	return false
 	
-
 # Handle custom interactions per building type (to be implemented in subclasses)
 func custom_behavior(delta: float):
 	pass

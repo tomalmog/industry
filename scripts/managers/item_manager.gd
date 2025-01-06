@@ -19,7 +19,7 @@ func _on_tick():
 		
 		if not visited.has(item): 
 			var stack = [item]  # Stack to process items iteratively
-			var to_move = []  # List of items to move this tick
+			#var to_move = []  # List of items to move this tick
 			var chain = []
 
 			# Perform the DFS to check which items can move
@@ -29,8 +29,6 @@ func _on_tick():
 				if visited.has(current_item):
 					continue
 					
-				
-
 				# Get the current belt the item is on
 				var belt = current_item.stored_by
 				
@@ -38,17 +36,19 @@ func _on_tick():
 					# Get the next belt position based on the belt's direction
 					var next_pos = belt.get_next()
 					var next_belt = BuildingManager.get_building(next_pos)
+					
 					chain.push_back([current_item, next_pos])
 					visited[current_item] = true
 					
-					if !next_belt:
+					if next_belt == null:
 						break
 										
 					# Check if the next belt can accept the item
 					if next_belt and next_belt.is_empty():
+						print("chain works ", chain.size())
 						for kvp in chain:
 							move_item_to_next_tile(kvp[0], kvp[1])
-							break
+							
 
 # Function to actually move the item to the next belt
 func move_item_to_next_tile(item: Item, next_pos: Vector2) -> void:

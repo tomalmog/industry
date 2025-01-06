@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 		
 func _on_tick():
 	
-
 	for building in buildings:
 		buildings[building].custom_behavior(1.0 / WorldManager.ticks_per_second)
 

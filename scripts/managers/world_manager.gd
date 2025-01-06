@@ -41,17 +41,6 @@ func run_game_tick() -> void:
 
 	BuildingManager._on_tick()
 
-	var spawn = Vector2(-5, -4)
-	if BuildingManager.buildings.has(spawn) && BuildingManager.buildings[spawn].is_empty():
-		var building = BuildingManager.get_building(spawn)
-		var item = ItemManager.spawn_item(0)
-		
-		building.stored_item = item
-	
-		item.stored_by = building
-		item.position = building.position
-		#item.move_to_building(tile)
-
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

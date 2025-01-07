@@ -19,9 +19,10 @@ config/icon="res://icon.svg"
 
 BuildData="*res://scripts/managers/build_data.gd"
 BuildSelection="*res://scripts/managers/build_selection.gd"
-WorldManager="*res://scripts/managers/world_manager.gd"
 BuildingManager="*res://scripts/managers/building_manager.gd"
 ItemManager="*res://scripts/managers/item_manager.gd"
+WorldManager="*res://scripts/managers/world_manager.gd"
+ResourceManager="*res://scripts/managers/resource_manager.gd"
 
 [dotnet]
 

@@ -16,12 +16,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
-	var cell_position = local_to_map(mouse_position)
+	var grid_position = local_to_map(mouse_position)
 	
 	if Input.is_action_pressed("left_click"): 
 		if BuildData.current_tile_id != BuildData.NO_SELECTION:
-			if (cell_position.x < -hub_size || cell_position.x >= hub_size || cell_position.y < -hub_size || cell_position.y >= hub_size):
-				place_building(cell_position)
+			if (grid_position.x < -hub_size || grid_position.x >= hub_size || grid_position.y < -hub_size || grid_position.y >= hub_size):
+				place_building(grid_position)
 
 	if Input.is_action_just_released("right_click"):
 		unselected_last_click = false
@@ -34,23 +34,23 @@ func _process(delta: float) -> void:
 			BuildData.current_tile_id = BuildData.NO_SELECTION
 			unselected_last_click = true
 		else:
-			delete_tile(cell_position)
+			delete_tile(grid_position)
 		
 		
-func place_building(cell_position: Vector2):
-	set_cell(cell_position, BuildData.current_tile_id, Vector2i(BuildData.current_tile_rotations[BuildData.current_tile_id], 0), 0)
+func place_building(grid_position: Vector2):
+	set_cell(grid_position, BuildData.current_tile_id, Vector2i(BuildData.current_tile_rotations[BuildData.current_tile_id], 0), 0)
 	
-	var new_building = BuildingManager.spawn_building(cell_position, BuildData.current_tile_id)
+	var new_building = BuildingManager.spawn_building(grid_position, BuildData.current_tile_id)
 	
 	new_building.type = BuildData.current_tile_id
-	new_building.position = map_to_local(cell_position) - Vector2(32, 32)
+	new_building.position = map_to_local(grid_position) - Vector2(32, 32)
 	new_building.direction = BuildData.DIRECTIONS[BuildData.current_tile_rotations[BuildData.current_tile_id]]
 	
 	
-func place_tile(cell_position: Vector2):
-	set_cell(cell_position, BuildData.current_tile_id, Vector2i(BuildData.current_tile_rotations[BuildData.current_tile_id], 0), 0)
+func place_tile(grid_position: Vector2):
+	set_cell(grid_position, BuildData.current_tile_id, Vector2i(BuildData.current_tile_rotations[BuildData.current_tile_id], 0), 0)
 	
-func delete_tile(cell_position: Vector2):
-	set_cell(cell_position)
+func delete_tile(grid_position: Vector2):
+	set_cell(grid_position)
 	
-	BuildingManager.delete_building(cell_position)
+	BuildingManager.delete_building(grid_position)

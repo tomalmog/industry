@@ -15,7 +15,7 @@ const DIRECTIONS = {0: Vector2.UP, 1: Vector2.RIGHT, 2: Vector2.DOWN, 3: Vector2
 
 @export var current_tile_id = NO_SELECTION
 @export var current_tile_rotations = {NO_SELECTION: 0, BELT_ID: 0, SMELTER_ID: 0, CUTTER_ID: 0, HARVESTER_ID: 0}
-@export var building_types = {BELT_ID: Belt, HARVESTER_ID: Harvester}
+@export var building_types = {BELT_ID: Belt, SMELTER_ID: Smelter, HARVESTER_ID: Harvester}
 
 
 

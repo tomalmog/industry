@@ -1,19 +1,18 @@
 extends Node2D
 
-var goldIngot
-
 var tick_timer: Timer
 @export var ticks_per_second: int = 4
 @export var tile_size = 64
 
-
+var background_layer: Node2D
 
 var world: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	world = get_tree().root
-	goldIngot = preload("res://assets/goldIngot.png")
+	
+	background_layer = get_node("/root/World/BackgroundLayer")
 	
 	
 	tick_timer = Timer.new()
@@ -36,10 +35,11 @@ func _on_tick() -> void:
 
 func run_game_tick() -> void:
 	
+	BuildingManager._on_tick()
 	
 	ItemManager._on_tick()
 
-	BuildingManager._on_tick()
+	
 
 	
 
@@ -64,12 +64,18 @@ func delete_tile_item(pos: Vector2):
 
 	
 
-func move_stored_item(building_one: Node, building_two: Node):
-	if (building_one.stored_item != null && building_one.stored_item.was_moved == false):
-		building_one.stored_item.was_moved = true
+func move_stored_item(building_one: Building, building_two: Building):
+	var item = building_one.stored_item
+	if (item != null && item.was_moved == false):
+		item.visible = true
+		item.was_moved = true
 		
-		building_one.stored_item.move_to_building(building_two)
+		item.move_to_building(building_two)
+		building_two.input_item(item)
 		
 		building_one.stored_item = null
 		
+
+func is_hub_tile(grid_position: Vector2):
+	return !(grid_position.x < -background_layer.hub_size || grid_position.x >= background_layer.hub_size || grid_position.y < -background_layer.hub_size || grid_position.y >= background_layer.hub_size)
 		

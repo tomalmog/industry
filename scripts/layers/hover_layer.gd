@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 	var hub_size = get_node("../BackgroundLayer").hub_size
 	
 	if !(curr_cell.x < -hub_size || curr_cell.x >= hub_size || curr_cell.y < -hub_size || curr_cell.y >= hub_size):
+		
 		return
 	
 	if BuildData.current_tile_id != BuildData.NO_SELECTION:

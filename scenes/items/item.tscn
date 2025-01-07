@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu21h4rj25w4s"]
+[gd_scene load_steps=2 format=3 uid="uid://cu21h4rj25w4s"]
 
 [ext_resource type="Script" path="res://scripts/items/item.gd" id="1_eaw5v"]
-[ext_resource type="Texture2D" uid="uid://bkgflc2lkycyi" path="res://assets/goldIngot.png" id="2_e7fnw"]
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_eaw5v")
-texture = ExtResource("2_e7fnw")

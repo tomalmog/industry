@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdka50w5etlv6"]
+
+[ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_10hdq"]
+[ext_resource type="Texture2D" uid="uid://dcfd0v2400sus" path="res://assets/items/gold_ingot.png" id="2_psj7r"]
+
+[node name="GoldIngot" instance=ExtResource("1_10hdq")]
+texture = ExtResource("2_psj7r")
+type = 3

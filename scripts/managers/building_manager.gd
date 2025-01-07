@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 func _on_tick():
 	
 	for building in buildings:
-		buildings[building].custom_behavior(1.0 / WorldManager.ticks_per_second)
+		buildings[building]._on_tick()
 
 	pass
 	
@@ -30,7 +30,6 @@ func get_building(pos: Vector2):
 
 func spawn_building(grid_position: Vector2, type: int) -> Node2D:
 	
-	
 	var building = BuildData.building_types[type].new()
 	
 	if buildings.has(grid_position) && !buildings[grid_position].is_empty():
@@ -39,10 +38,10 @@ func spawn_building(grid_position: Vector2, type: int) -> Node2D:
 		item.stored_by = building
 		building.stored_item = item
 		
-
-	
 	building.grid_position = grid_position
 	buildings[grid_position] = building
+	
+	building.initialize()
 	return building
 	
 func delete_building(grid_position: Vector2):

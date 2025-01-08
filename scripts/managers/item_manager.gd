@@ -49,10 +49,7 @@ func _on_tick():
 	
 	for item in items:
 		item.is_moving = false
-	
-	
-	
-	
+
 	var outer_chain = []
 	
 	for item in items:
@@ -62,13 +59,11 @@ func _on_tick():
 		
 		var visited_buildings = {}
 		
-		
-		
 		if not visited_items.has(item): 
-			var building_stack = [item.stored_by]  # Stack to process items iteratively
+			var building_stack = [item.stored_by]  # stack to process buildings
 			var chain = []
 
-			# Perform the DFS to check which items can move
+			# run the DFS to check which items can move
 			while building_stack.size() > 0:
 				var building = building_stack.pop_back()
 				var current_item = building.stored_item
@@ -124,5 +119,7 @@ func spawn_item(type: int, state: int) -> Node:
 	return new_item
 	
 func delete_item(item: Item):
+	#r
+	
 	items.erase(item)
 	item.queue_free()

@@ -5,4 +5,4 @@
 
 [node name="GoldNugget" instance=ExtResource("1_rwngy")]
 texture = ExtResource("2_2n34f")
-type = 2
+type = 11

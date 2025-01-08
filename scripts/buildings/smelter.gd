@@ -19,15 +19,29 @@ func can_accept_item(item: Item) -> bool:
 	return false
 	
 func input_item(item: Item):
-	ItemManager.delete_item(item)
-	
-	var new_item = ItemManager.spawn_item(item.type + 1, ItemManager.MOVABLE)
-	new_item.spawn_at_building(self)
-	
+	item = ItemManager.spawn_item(item.type + 1, ItemManager.IMMOVABLE)
 	tick_counter = 0
 	
-func _run_tick():
 	
+	#ItemManager.delete_item(item)
+	
+	#print(item.type)
+	#var new_item = ItemManager.spawn_item(item.type + 1, ItemManager.IMMOVABLE)
+	#new_item.spawn_at_building(self)
+	#
+	#new_item.was_moved = true
+	#stored_item = new_item
+	#
+	#
+	#tick_counter = 0
+	
+	#if !stored_item:
+		#var item = ItemManager.spawn_item(resource_type, ItemManager.MOVABLE)
+		#item.spawn_at_building(self)
+		#
+		#stored_item = item
+	
+func _run_tick():
 	
 	if stored_item:
 		stored_item.set_state(ItemManager.MOVABLE)

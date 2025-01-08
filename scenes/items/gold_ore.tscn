@@ -5,4 +5,4 @@
 
 [node name="GoldOre" instance=ExtResource("1_08vm8")]
 texture = ExtResource("2_aa48q")
-type = 1
+type = 10

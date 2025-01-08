@@ -5,4 +5,4 @@
 
 [node name="GoldIngot" instance=ExtResource("1_10hdq")]
 texture = ExtResource("2_psj7r")
-type = 3
+type = 13

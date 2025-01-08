@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cg40yvrm38gsg" path="res://assets/belt.png" id="4_bcefr"]
 [ext_resource type="Script" path="res://scripts/layers/hover_layer.gd" id="4_e58c6"]
 [ext_resource type="Script" path="res://scripts/layers/building_layer.gd" id="5_eaeuu"]
-[ext_resource type="Texture2D" uid="uid://8tp30nshh7iv" path="res://assets/smelter.png" id="5_y20uu"]
+[ext_resource type="Texture2D" uid="uid://bi5vc7odpyhpf" path="res://assets/buildings/smelter.png" id="5_y20uu"]
 [ext_resource type="Texture2D" uid="uid://cilhypldarhj4" path="res://assets/buildings/harvester.png" id="6_32ho1"]
 [ext_resource type="Texture2D" uid="uid://d23w2tm4cju5p" path="res://assets/cutter.png" id="7_0srbq"]
 [ext_resource type="Texture2D" uid="uid://jdg7mouoxk3r" path="res://assets/items/gold_ore.png" id="8_db3rx"]

@@ -1,11 +1,11 @@
 extends TransformBuilding
 
-class_name Smelter
+class_name Cutter
 
 # Called when the node enters the scene tree for the first time.
 func initialize():
-	type = BuildData.SMELTER_ID
-	operation_interval = 8
+	type = BuildData.CUTTER_ID
+	operation_interval = 16
 	
-	input_type = 0
+	input_type = 2
 	pass

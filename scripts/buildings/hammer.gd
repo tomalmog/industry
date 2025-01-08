@@ -1,11 +1,11 @@
 extends TransformBuilding
 
-class_name Smelter
+class_name Hammer
 
 # Called when the node enters the scene tree for the first time.
 func initialize():
 	type = BuildData.SMELTER_ID
-	operation_interval = 8
+	operation_interval = 12
 	
-	input_type = 0
+	input_type = 1
 	pass

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyf5setj1ffca"]
+
+[ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_4l4n4"]
+[ext_resource type="Texture2D" uid="uid://c473a2301gq1k" path="res://assets/items/bronze_nugget.png" id="2_7rra5"]
+
+[node name="BronzeNugget" instance=ExtResource("1_4l4n4")]
+texture = ExtResource("2_7rra5")
+type = 31

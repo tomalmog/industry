@@ -71,7 +71,7 @@ func move_stored_item(building_one: Building, building_two: Building):
 		item.was_moved = true
 		
 		item.move_to_building(building_two)
-		building_two.input_item(item)
+		building_two.input_item()
 		
 		building_one.stored_item = null
 		

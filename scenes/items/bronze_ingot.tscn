@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://gcitvc3y2e7l"]
+
+[ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_26not"]
+[ext_resource type="Texture2D" uid="uid://b1uaydk1bgb5g" path="res://assets/items/bronze_ingot.png" id="2_sb24l"]
+
+[node name="BronzeIngot" instance=ExtResource("1_26not")]
+texture = ExtResource("2_sb24l")
+type = 32

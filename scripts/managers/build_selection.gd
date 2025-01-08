@@ -10,15 +10,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("belt"):
 		building_selected(BuildData.BELT_ID)
+	
+	if Input.is_action_just_pressed("harvester"):
+		building_selected(BuildData.HARVESTER_ID)
 		
 	if Input.is_action_just_pressed("smelter"):
 		building_selected(BuildData.SMELTER_ID)
 		
+	if Input.is_action_just_pressed("hammer"):
+		building_selected(BuildData.HAMMER_ID)
+	
 	if Input.is_action_just_pressed("cutter"):
 		building_selected(BuildData.CUTTER_ID)
-	
-	if Input.is_action_just_pressed("harvester"):
-		building_selected(BuildData.HARVESTER_ID)
+		
+	if Input.is_action_just_pressed("trash"):
+		building_selected(BuildData.TRASH_ID)
 		
 	if Input.is_action_just_pressed("rotate"):
 		rotate_selected_tile()

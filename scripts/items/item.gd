@@ -15,7 +15,7 @@ var stored_by: Building = null  # Building or other system that holds the item
 var was_moved: bool = false
 
 var is_moving: bool = false
-var direction: Vector2 = Vector2.ZERO
+var output_direction: Vector2 = Vector2.ZERO
 
 
 
@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 		
 	if is_moving:
 		var distance_per_second = WorldManager.tile_size * WorldManager.ticks_per_second
-		var movement = direction * distance_per_second * delta
+		var movement = output_direction * distance_per_second * delta
 		position += movement
 		
 
@@ -52,7 +52,7 @@ func move(new_position: Vector2):
 func move_to_building(building: Building):
 	building.stored_item = self
 	is_moving = true
-	direction = stored_by.direction
+	output_direction = stored_by.output_direction
 	
 	stored_by = building
 	
@@ -62,7 +62,7 @@ func spawn_at_building(building: Building):
 	
 	position = building.position
 	
-	direction = stored_by.direction
+	output_direction = stored_by.output_direction
 	
 
 # Draw the item (if needed for custom rendering)
@@ -72,6 +72,9 @@ func _draw():
 		var new_size = texture_size * texture_scale
 		
 		draw_texture_rect(texture, Rect2((texture_size - new_size) / 2, new_size), false)
+		
+		if state == ItemManager.IMMOVABLE:
+			draw_circle(Vector2(0, 0), 5, Color(1, 0, 0))
 
 # Update the item's logic (called manually or via another system)
 func update_item(delta: float):

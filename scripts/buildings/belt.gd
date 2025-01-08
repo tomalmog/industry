@@ -11,7 +11,7 @@ func initialize():
 func update_state(delta: float):
 	pass
 	#if stored_item != null:
-		#var target_position = grid_position + direction
+		#var target_position = grid_position + output_direction
 		#if can_move_to(target_position):
 			#WorldManager.move_stored_item(self, BuildingManager.get_building(target_position))
 		

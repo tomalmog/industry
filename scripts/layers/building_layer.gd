@@ -44,7 +44,7 @@ func place_building(grid_position: Vector2):
 	
 	new_building.type = BuildData.current_tile_id
 	new_building.position = map_to_local(grid_position) - Vector2(32, 32)
-	new_building.direction = BuildData.DIRECTIONS[BuildData.current_tile_rotations[BuildData.current_tile_id]]
+	new_building.output_direction = BuildData.output_directions[BuildData.current_tile_rotations[BuildData.current_tile_id]]
 	
 	
 func place_tile(grid_position: Vector2):

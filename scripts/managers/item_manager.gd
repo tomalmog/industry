@@ -10,12 +10,19 @@ const DIAMOND_ID = 3
 
 const GOLD_ORE = 10
 const IRON_ORE = 20
+const BRONZE_ORE = 30
 
 const GOLD_NUGGET = 11
 const IRON_NUGGET = 21
+const BRONZE_NUGGET = 31
 
 const GOLD_INGOT = 12
 const IRON_INGOT = 22
+const BRONZE_INGOT = 32
+
+const GOLD_CUT = 13
+const IRON_CUT = 23
+const BRONZE_CUT = 33
 
 var item_instances = {}
 
@@ -27,9 +34,17 @@ func _ready() -> void:
 	item_instances[GOLD_ORE] = preload("res://scenes/items/gold_ore.tscn")
 	item_instances[GOLD_NUGGET] = preload("res://scenes/items/gold_nugget.tscn")
 	item_instances[GOLD_INGOT] = preload("res://scenes/items/gold_ingot.tscn")
+	item_instances[GOLD_CUT] = preload("res://scenes/items/gold_cut.tscn")
 	
 	item_instances[IRON_ORE] = preload("res://scenes/items/iron_ore.tscn")
 	item_instances[IRON_NUGGET] = preload("res://scenes/items/iron_nugget.tscn")
+	item_instances[IRON_INGOT] = preload("res://scenes/items/iron_ingot.tscn")
+	item_instances[IRON_CUT] = preload("res://scenes/items/iron_cut.tscn")
+	
+	item_instances[BRONZE_ORE] = preload("res://scenes/items/bronze_ore.tscn")
+	item_instances[BRONZE_NUGGET] = preload("res://scenes/items/bronze_nugget.tscn")
+	item_instances[BRONZE_INGOT] = preload("res://scenes/items/bronze_ingot.tscn")
+	item_instances[BRONZE_CUT] = preload("res://scenes/items/bronze_cut.tscn")
 	
 	
 	pass
@@ -48,6 +63,9 @@ func _on_tick():
 	var visited_items = {}
 	
 	for item in items:
+		if (item.state == ItemManager.IMMOVABLE):
+			#item.set_state(ItemManager.MOVABLE)
+			print(item, 'item immovable')
 		item.is_moving = false
 
 	var outer_chain = []
@@ -74,7 +92,7 @@ func _on_tick():
 					continue
 				
 				if building:
-					# Get the next belt position based on the belt's direction
+					# Get the next belt position based on the belt's output_direction
 					var next_pos = building.get_next()
 					var next_building = BuildingManager.get_building(next_pos)
 					
@@ -89,7 +107,6 @@ func _on_tick():
 										
 					# Check if the next belt can accept the item
 					if next_building and next_building.can_accept_item(current_item):
-						print("chain works ", chain.size())
 						for i in range(chain.size() - 1, -1, -1):
 							var kvp = chain[i]
 							move_item_to_next_tile(kvp[0], kvp[1])
@@ -119,7 +136,7 @@ func spawn_item(type: int, state: int) -> Node:
 	return new_item
 	
 func delete_item(item: Item):
-	#r
 	
+	item.stored_by.stored_item = null
 	items.erase(item)
 	item.queue_free()

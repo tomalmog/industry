@@ -1,18 +1,27 @@
-[gd_scene load_steps=24 format=3 uid="uid://dmru1rftwki7n"]
+[gd_scene load_steps=37 format=3 uid="uid://dmru1rftwki7n"]
 
 [ext_resource type="Texture2D" uid="uid://c8ahj7fs452g4" path="res://assets/outline.png" id="2_k0q12"]
 [ext_resource type="Script" path="res://scripts/layers/background_layer.gd" id="3_5ls8h"]
 [ext_resource type="Texture2D" uid="uid://be0k8qm0g22ln" path="res://assets/base.png" id="3_uifx1"]
 [ext_resource type="Texture2D" uid="uid://cg40yvrm38gsg" path="res://assets/belt.png" id="4_bcefr"]
 [ext_resource type="Script" path="res://scripts/layers/hover_layer.gd" id="4_e58c6"]
+[ext_resource type="Texture2D" uid="uid://cawuto6774f4q" path="res://assets/buildings/hammer.png" id="5_4ch56"]
 [ext_resource type="Script" path="res://scripts/layers/building_layer.gd" id="5_eaeuu"]
 [ext_resource type="Texture2D" uid="uid://bi5vc7odpyhpf" path="res://assets/buildings/smelter.png" id="5_y20uu"]
 [ext_resource type="Texture2D" uid="uid://cilhypldarhj4" path="res://assets/buildings/harvester.png" id="6_32ho1"]
-[ext_resource type="Texture2D" uid="uid://d23w2tm4cju5p" path="res://assets/cutter.png" id="7_0srbq"]
+[ext_resource type="Texture2D" uid="uid://bc54oaufvi47q" path="res://assets/buildings/cutter.png" id="7_mvnxm"]
+[ext_resource type="Texture2D" uid="uid://cj8xy5uuthw6t" path="res://assets/buildings/trash.png" id="8_0m6fv"]
 [ext_resource type="Texture2D" uid="uid://jdg7mouoxk3r" path="res://assets/items/gold_ore.png" id="8_db3rx"]
 [ext_resource type="Script" path="res://scripts/layers/resource_layer.gd" id="8_pen56"]
 [ext_resource type="Texture2D" uid="uid://c2uqm14uggkxm" path="res://assets/items/iron_ore.png" id="9_3wioi"]
+[ext_resource type="Texture2D" uid="uid://dunbpst87mydt" path="res://assets/items/bronze_ore.png" id="9_eegxf"]
 [ext_resource type="Script" path="res://scripts/camera/camera.gd" id="9_gwmok"]
+[ext_resource type="Texture2D" uid="uid://dyfrophnpxea6" path="res://assets/icons/smelter_icon.png" id="17_764k2"]
+[ext_resource type="Texture2D" uid="uid://ngqb1da6eyql" path="res://assets/icons/belt_icon.png" id="17_rwkl1"]
+[ext_resource type="Texture2D" uid="uid://c01j2aghgreq7" path="res://assets/icons/harvester_icon.png" id="18_dntsg"]
+[ext_resource type="Texture2D" uid="uid://b54rnlmigtfef" path="res://assets/icons/hammer_icon.png" id="20_yc44m"]
+[ext_resource type="Texture2D" uid="uid://qaxu4rmiwokl" path="res://assets/icons/cutter_icon.png" id="21_0u6l6"]
+[ext_resource type="Texture2D" uid="uid://4t538rawa3y1" path="res://assets/icons/trash_icon.png" id="22_nb7py"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ojuy"]
 texture = ExtResource("3_uifx1")
@@ -35,6 +44,14 @@ texture_region_size = Vector2i(64, 64)
 2:0/0 = 0
 3:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqgmg"]
+texture = ExtResource("6_32ho1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hr4j"]
 texture = ExtResource("5_y20uu")
 texture_region_size = Vector2i(64, 64)
@@ -44,15 +61,23 @@ texture_region_size = Vector2i(64, 64)
 3:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8ph8"]
-texture = ExtResource("7_0srbq")
+texture = ExtResource("5_4ch56")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqgmg"]
-texture = ExtResource("6_32ho1")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88iip"]
+texture = ExtResource("7_mvnxm")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sevea"]
+texture = ExtResource("8_0m6fv")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -62,11 +87,13 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_1cmdt"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_2ojuy")
-sources/3 = SubResource("TileSetAtlasSource_6hr4j")
 sources/2 = SubResource("TileSetAtlasSource_6vamu")
 sources/1 = SubResource("TileSetAtlasSource_k1prl")
-sources/4 = SubResource("TileSetAtlasSource_s8ph8")
-sources/5 = SubResource("TileSetAtlasSource_iqgmg")
+sources/3 = SubResource("TileSetAtlasSource_iqgmg")
+sources/5 = SubResource("TileSetAtlasSource_s8ph8")
+sources/4 = SubResource("TileSetAtlasSource_6hr4j")
+sources/6 = SubResource("TileSetAtlasSource_88iip")
+sources/9 = SubResource("TileSetAtlasSource_sevea")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jo84"]
 texture = ExtResource("8_db3rx")
@@ -78,10 +105,19 @@ texture = ExtResource("9_3wioi")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c5ctf"]
+texture = ExtResource("9_eegxf")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_yi8ys"]
 tile_size = Vector2i(64, 64)
 sources/10 = SubResource("TileSetAtlasSource_0jo84")
 sources/20 = SubResource("TileSetAtlasSource_a6pxo")
+sources/30 = SubResource("TileSetAtlasSource_c5ctf")
+
+[sub_resource type="Theme" id="Theme_bcr5n"]
+Button/colors/font_hover_color = Color(0.95, 0.5035, 0.5035, 1)
 
 [node name="World" type="Node2D"]
 
@@ -90,7 +126,7 @@ tile_set = SubResource("TileSet_1cmdt")
 script = ExtResource("3_5ls8h")
 
 [node name="ResourceLayer" type="TileMapLayer" parent="."]
-modulate = Color(0.529412, 0.717647, 0.772549, 0.352941)
+modulate = Color(1, 1, 1, 0.54902)
 tile_set = SubResource("TileSet_yi8ys")
 script = ExtResource("8_pen56")
 
@@ -109,18 +145,47 @@ script = ExtResource("9_gwmok")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.9
+anchor_right = 0.9
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("17_rwkl1")
 
-[node name="LeftPadding" type="MarginContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("18_dntsg")
 
-[node name="RightPadding" type="MarginContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_bcr5n")
+texture_normal = ExtResource("17_764k2")
+
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("20_yc44m")
+
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("21_0u6l6")
+
+[node name="TextureButton6" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("22_nb7py")

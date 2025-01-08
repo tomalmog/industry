@@ -9,40 +9,40 @@ class_name Building
 # Properties
 @export var type: int                            # type of building e.g 0: Smelter, 1: Harvester
 @export var grid_position: Vector2                 # position on tilemap
-@export var direction: Vector2 = Vector2.UP      # direction building is facing, default is up
+@export var output_direction: Vector2 = Vector2.UP      # output_direction building is facing, default is up
+@export var input_direction: Vector2 = Vector2.DOWN
 @export var stored_item: Item = null             # reference to the item that is currently stored by the building 
 @export var moving_in_item: Node = null
 @export var operation_interval: int 
 var tick_counter: int = 0
+
+var state: int = 0
 
 # Called when the node enters the scene tree for the first time
 func initialize():
 	pass
 
 func get_next():
-	return grid_position + direction
+	return grid_position + output_direction
 	
 func can_accept_item(item: Item):
 	return is_empty()
 
 func is_empty() -> bool:
-	return not stored_item
+	return stored_item == null
 	
-func input_item(item: Item):
+func input_item():
 	pass
 
 
 # Handle custom interactions per building type (to be implemented in subclasses)
 func _on_tick():
-	_count_tick()
-	pass
-
-func _count_tick():
 	tick_counter += 1
 	
 	if tick_counter >= operation_interval:
 		_run_tick()
 		tick_counter = 0
+	pass
 
 func _run_tick():
 	pass

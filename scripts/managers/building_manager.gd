@@ -34,9 +34,7 @@ func spawn_building(grid_position: Vector2, type: int) -> Node2D:
 	
 	if buildings.has(grid_position) && !buildings[grid_position].is_empty():
 		
-		var item = buildings[grid_position].stored_item
-		item.stored_by = building
-		building.stored_item = item
+		ItemManager.delete_item(buildings[grid_position].stored_item)
 		
 	building.grid_position = grid_position
 	buildings[grid_position] = building
@@ -48,7 +46,6 @@ func delete_building(grid_position: Vector2):
 	if buildings.has(grid_position) && buildings[grid_position]:	
 		var item = buildings[grid_position].stored_item
 		if is_instance_valid(item):
-			ItemManager.items.erase(item)
-			item.queue_free()
+			ItemManager.delete_item(item)
 		buildings.erase(grid_position)
 	

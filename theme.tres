@@ -1,0 +1,4 @@
+[gd_resource type="Theme" format=3 uid="uid://bd8c3v7j2etl8"]
+
+[resource]
+Button/colors/font_hover_color = Color(0.95, 0.5035, 0.5035, 1)

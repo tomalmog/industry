@@ -1,9 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://dmru1rftwki7n"]
+[gd_scene load_steps=39 format=3 uid="uid://dmru1rftwki7n"]
 
 [ext_resource type="Texture2D" uid="uid://c8ahj7fs452g4" path="res://assets/outline.png" id="2_k0q12"]
 [ext_resource type="Script" path="res://scripts/layers/background_layer.gd" id="3_5ls8h"]
 [ext_resource type="Texture2D" uid="uid://be0k8qm0g22ln" path="res://assets/base.png" id="3_uifx1"]
-[ext_resource type="Texture2D" uid="uid://cg40yvrm38gsg" path="res://assets/belt.png" id="4_bcefr"]
+[ext_resource type="Texture2D" uid="uid://bejsgk12bfg0e" path="res://assets/buildings/belt.png" id="4_bcefr"]
 [ext_resource type="Script" path="res://scripts/layers/hover_layer.gd" id="4_e58c6"]
 [ext_resource type="Texture2D" uid="uid://cawuto6774f4q" path="res://assets/buildings/hammer.png" id="5_4ch56"]
 [ext_resource type="Script" path="res://scripts/layers/building_layer.gd" id="5_eaeuu"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c2uqm14uggkxm" path="res://assets/items/iron_ore.png" id="9_3wioi"]
 [ext_resource type="Texture2D" uid="uid://dunbpst87mydt" path="res://assets/items/bronze_ore.png" id="9_eegxf"]
 [ext_resource type="Script" path="res://scripts/camera/camera.gd" id="9_gwmok"]
+[ext_resource type="Script" path="res://scripts/h_box_container.gd" id="17_76k3x"]
 [ext_resource type="Texture2D" uid="uid://dyfrophnpxea6" path="res://assets/icons/smelter_icon.png" id="17_764k2"]
 [ext_resource type="Texture2D" uid="uid://ngqb1da6eyql" path="res://assets/icons/belt_icon.png" id="17_rwkl1"]
 [ext_resource type="Texture2D" uid="uid://c01j2aghgreq7" path="res://assets/icons/harvester_icon.png" id="18_dntsg"]
@@ -116,6 +117,20 @@ sources/10 = SubResource("TileSetAtlasSource_0jo84")
 sources/20 = SubResource("TileSetAtlasSource_a6pxo")
 sources/30 = SubResource("TileSetAtlasSource_c5ctf")
 
+[sub_resource type="GDScript" id="GDScript_pcwtl"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [sub_resource type="Theme" id="Theme_bcr5n"]
 Button/colors/font_hover_color = Color(0.95, 0.5035, 0.5035, 1)
 
@@ -144,6 +159,7 @@ scale = Vector2(0.984449, 1.00479)
 script = ExtResource("9_gwmok")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_pcwtl")
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = -1
@@ -164,28 +180,29 @@ grow_vertical = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 100
 alignment = 1
+script = ExtResource("17_76k3x")
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Belt" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("17_rwkl1")
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Harvester" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("18_dntsg")
 
-[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Smelter" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_bcr5n")
 texture_normal = ExtResource("17_764k2")
 
-[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Hammer" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("20_yc44m")
 
-[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Cutter" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("21_0u6l6")
 
-[node name="TextureButton6" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Trash" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("22_nb7py")

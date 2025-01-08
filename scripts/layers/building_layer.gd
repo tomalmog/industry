@@ -3,6 +3,7 @@ extends TileMapLayer
 var hub_size: int
 var unselected_last_click = false
 var camera: Node
+var panel: Panel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,6 +11,7 @@ func _ready() -> void:
 	
 	camera = get_node("../Camera")
 	hub_size = get_node("../BackgroundLayer").hub_size
+	panel = get_node("../CanvasLayer/Panel")
 	pass # Replace with function body.
 
 
@@ -17,6 +19,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()
 	var grid_position = local_to_map(mouse_position)
+	
+	
+	
+	print(get_local_mouse_position())
+	
+	if panel.get_global_rect().has_point(get_local_mouse_position()):
+		return
+	
 	
 	if Input.is_action_pressed("left_click"): 
 		if BuildData.current_tile_id != BuildData.NO_SELECTION:

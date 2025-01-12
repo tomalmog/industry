@@ -5,8 +5,11 @@ var tick_timer: Timer
 @export var tile_size = 64
 
 var background_layer: Node2D
-
 var world: Node
+
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -77,5 +80,5 @@ func move_stored_item(building_one: Building, building_two: Building):
 		
 
 func is_hub_tile(grid_position: Vector2):
-	return !(grid_position.x < -background_layer.hub_size || grid_position.x >= background_layer.hub_size || grid_position.y < -background_layer.hub_size || grid_position.y >= background_layer.hub_size)
+	return !(grid_position.x < -background_layer.get_hub_size() || grid_position.x >= background_layer.get_hub_size() || grid_position.y < -background_layer.get_hub_size() || grid_position.y >= background_layer.get_hub_size())
 		

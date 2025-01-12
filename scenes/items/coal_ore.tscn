@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://kyep6vu78rgn"]
+
+[ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_nfrq4"]
+[ext_resource type="Texture2D" uid="uid://dgoi4gp0k5hyx" path="res://assets/items/coal_ore.png" id="2_qojl0"]
+
+[node name="Coal Ore" instance=ExtResource("1_nfrq4")]
+texture = ExtResource("2_qojl0")

@@ -15,6 +15,10 @@ func _ready() -> void:
 	for x in range(-9, -5):
 		for y in range(5, 9):
 			spawn_resource(ItemManager.BRONZE_ORE, Vector2(x, y))
+			
+	for x in range(5, 9):
+		for y in range(-9, -5):
+			spawn_resource(ItemManager.COAL_ORE, Vector2(x, y))
 	
 	pass # Replace with function body.
 

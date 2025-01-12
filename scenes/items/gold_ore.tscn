@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_08vm8"]
 [ext_resource type="Texture2D" uid="uid://jdg7mouoxk3r" path="res://assets/items/gold_ore.png" id="2_aa48q"]
 
-[node name="GoldOre" instance=ExtResource("1_08vm8")]
+[node name="Gold Ore" instance=ExtResource("1_08vm8")]
 texture = ExtResource("2_aa48q")
 type = 10

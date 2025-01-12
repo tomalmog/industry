@@ -10,8 +10,8 @@ var panel: Panel
 func _ready() -> void:
 	
 	camera = get_node("../Camera")
-	hub_size = get_node("../BackgroundLayer").hub_size
-	panel = get_node("../CanvasLayer/Panel")
+	hub_size = get_node("../BackgroundLayer").get_hub_size()
+	panel = get_node("../CanvasLayer/ToolbarControl/IconPanel")
 	pass # Replace with function body.
 
 
@@ -22,9 +22,7 @@ func _process(delta: float) -> void:
 	
 	
 	
-	print(get_local_mouse_position())
-	
-	if panel.get_global_rect().has_point(get_local_mouse_position()):
+	if panel.get_global_rect().has_point(get_viewport().get_mouse_position()):
 		return
 	
 	
@@ -54,7 +52,7 @@ func place_building(grid_position: Vector2):
 	
 	new_building.type = BuildData.current_tile_id
 	new_building.position = map_to_local(grid_position) - Vector2(32, 32)
-	new_building.output_direction = BuildData.output_directions[BuildData.current_tile_rotations[BuildData.current_tile_id]]
+	new_building.output_direction = BuildData.directions[BuildData.current_tile_rotations[BuildData.current_tile_id]]
 	
 	
 func place_tile(grid_position: Vector2):

@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_qgbd7"]
 [ext_resource type="Texture2D" uid="uid://ci0wq3a0svwen" path="res://assets/items/gold_cut.png" id="2_ayda5"]
 
-[node name="Item" instance=ExtResource("1_qgbd7")]
+[node name="Gold Cut" instance=ExtResource("1_qgbd7")]
 texture = ExtResource("2_ayda5")
 type = 13

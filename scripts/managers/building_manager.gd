@@ -39,7 +39,7 @@ func spawn_building(grid_position: Vector2, type: int) -> Node2D:
 	building.grid_position = grid_position
 	buildings[grid_position] = building
 	
-	building.initialize()
+	building.initialize(BuildData.current_tile_rotations[type])
 	return building
 	
 func delete_building(grid_position: Vector2):

@@ -9,8 +9,8 @@ var is_generating: bool = false
 var generating_type: int
 
 	
-func can_accept_item(item: Item) -> bool:
-	if is_empty() && !is_generating && item.type % 10 == input_type:
+func can_accept_item(item: Item, input_direction: Vector2) -> bool:
+	if is_empty() && !is_generating && inputs.has(input_direction) && item.type % 10 == inputs[input_direction]:
 		return true
 	return false
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://dmru1rftwki7n"]
+[gd_scene load_steps=63 format=3 uid="uid://dmru1rftwki7n"]
 
 [ext_resource type="Texture2D" uid="uid://c8ahj7fs452g4" path="res://assets/outline.png" id="2_k0q12"]
 [ext_resource type="Script" path="res://scripts/layers/background_layer.gd" id="3_5ls8h"]
+[ext_resource type="Texture2D" uid="uid://dylnsi3a7d5g6" path="res://assets/buildings/accepter.png" id="3_cwwem"]
 [ext_resource type="Texture2D" uid="uid://be0k8qm0g22ln" path="res://assets/base.png" id="3_uifx1"]
 [ext_resource type="Texture2D" uid="uid://bejsgk12bfg0e" path="res://assets/buildings/belt.png" id="4_bcefr"]
 [ext_resource type="Script" path="res://scripts/layers/hover_layer.gd" id="4_e58c6"]
@@ -16,13 +17,26 @@
 [ext_resource type="Texture2D" uid="uid://c2uqm14uggkxm" path="res://assets/items/iron_ore.png" id="9_3wioi"]
 [ext_resource type="Texture2D" uid="uid://dunbpst87mydt" path="res://assets/items/bronze_ore.png" id="9_eegxf"]
 [ext_resource type="Script" path="res://scripts/camera/camera.gd" id="9_gwmok"]
-[ext_resource type="Script" path="res://scripts/h_box_container.gd" id="17_76k3x"]
+[ext_resource type="Texture2D" uid="uid://dgoi4gp0k5hyx" path="res://assets/items/coal_ore.png" id="14_rx8lo"]
+[ext_resource type="Script" path="res://scripts/ui/toolbar/button_container.gd" id="17_76k3x"]
 [ext_resource type="Texture2D" uid="uid://dyfrophnpxea6" path="res://assets/icons/smelter_icon.png" id="17_764k2"]
 [ext_resource type="Texture2D" uid="uid://ngqb1da6eyql" path="res://assets/icons/belt_icon.png" id="17_rwkl1"]
 [ext_resource type="Texture2D" uid="uid://c01j2aghgreq7" path="res://assets/icons/harvester_icon.png" id="18_dntsg"]
+[ext_resource type="Theme" uid="uid://bd8c3v7j2etl8" path="res://theme.tres" id="18_m7pue"]
+[ext_resource type="Script" path="res://scripts/ui/toolbar/button_panel.gd" id="19_m5n6o"]
 [ext_resource type="Texture2D" uid="uid://b54rnlmigtfef" path="res://assets/icons/hammer_icon.png" id="20_yc44m"]
 [ext_resource type="Texture2D" uid="uid://qaxu4rmiwokl" path="res://assets/icons/cutter_icon.png" id="21_0u6l6"]
 [ext_resource type="Texture2D" uid="uid://4t538rawa3y1" path="res://assets/icons/trash_icon.png" id="22_nb7py"]
+[ext_resource type="Texture2D" uid="uid://hg15bo0w175b" path="res://assets/icons/settings_icon.png" id="27_4yggy"]
+[ext_resource type="Script" path="res://scripts/ui/options/options_box.gd" id="27_ba234"]
+[ext_resource type="Script" path="res://scripts/ui/hub/item_label.gd" id="27_gcdp1"]
+[ext_resource type="Script" path="res://scripts/ui/hub/item_texture.gd" id="28_7qoyu"]
+[ext_resource type="Texture2D" uid="uid://c5cmdjts8nfbj" path="res://assets/icons/upgrade_icon.png" id="28_sbvrv"]
+[ext_resource type="Script" path="res://scripts/ui/hub/progress_bar.gd" id="29_adssx"]
+[ext_resource type="Texture2D" uid="uid://blimtgavke1ts" path="res://assets/icons/inventory_icon.png" id="29_kpki6"]
+[ext_resource type="Texture2D" uid="uid://diav3fq8202bs" path="res://assets/icons/save_icon.png" id="29_sdg4x"]
+[ext_resource type="Script" path="res://scripts/ui/hub/progress_label.gd" id="29_vymck"]
+[ext_resource type="Script" path="res://scripts/ui/options/inventory_button.gd" id="32_im303"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ojuy"]
 texture = ExtResource("3_uifx1")
@@ -36,6 +50,19 @@ texture_region_size = Vector2i(64, 64)
 texture = ExtResource("2_k0q12")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_at0yf"]
+texture = ExtResource("3_cwwem")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6vamu"]
 texture = ExtResource("4_bcefr")
@@ -95,6 +122,7 @@ sources/5 = SubResource("TileSetAtlasSource_s8ph8")
 sources/4 = SubResource("TileSetAtlasSource_6hr4j")
 sources/6 = SubResource("TileSetAtlasSource_88iip")
 sources/9 = SubResource("TileSetAtlasSource_sevea")
+sources/10 = SubResource("TileSetAtlasSource_at0yf")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jo84"]
 texture = ExtResource("8_db3rx")
@@ -111,11 +139,17 @@ texture = ExtResource("9_eegxf")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58oo6"]
+texture = ExtResource("14_rx8lo")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_yi8ys"]
 tile_size = Vector2i(64, 64)
 sources/10 = SubResource("TileSetAtlasSource_0jo84")
 sources/20 = SubResource("TileSetAtlasSource_a6pxo")
 sources/30 = SubResource("TileSetAtlasSource_c5ctf")
+sources/49 = SubResource("TileSetAtlasSource_58oo6")
 
 [sub_resource type="GDScript" id="GDScript_pcwtl"]
 script/source = "extends CanvasLayer
@@ -131,8 +165,62 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu5vn"]
+bg_color = Color(0.29, 0.29, 0.29, 0.568627)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6rio"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lrdk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a28wt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="Theme" id="Theme_bcr5n"]
 Button/colors/font_hover_color = Color(0.95, 0.5035, 0.5035, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeycx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rh4hl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tj7w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="SystemFont" id="SystemFont_a622a"]
+font_names = PackedStringArray("Monospace")
+font_weight = 800
+subpixel_positioning = 0
 
 [node name="World" type="Node2D"]
 
@@ -161,16 +249,34 @@ script = ExtResource("9_gwmok")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_pcwtl")
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.9
-anchor_right = 0.9
+[node name="ToolbarControl" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(600, 96)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -96.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="IconPanel" type="Panel" parent="CanvasLayer/ToolbarControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_uu5vn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+[node name="ButtonBox" type="HBoxContainer" parent="CanvasLayer/ToolbarControl/IconPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,31 +284,256 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
-theme_override_constants/separation = 100
+theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("17_76k3x")
 
-[node name="Belt" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="BeltPanel" type="Panel" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox"]
+custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6rio")
+script = ExtResource("19_m5n6o")
+
+[node name="Belt" type="TextureButton" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox/BeltPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme = ExtResource("18_m7pue")
 texture_normal = ExtResource("17_rwkl1")
 
-[node name="Harvester" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="HarvesterPanel" type="Panel" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox"]
+custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_0lrdk")
+script = ExtResource("19_m5n6o")
+
+[node name="Harvester" type="TextureButton" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox/HarvesterPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
 texture_normal = ExtResource("18_dntsg")
 
-[node name="Smelter" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="SmelterPanel" type="Panel" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox"]
+custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_a28wt")
+script = ExtResource("19_m5n6o")
+
+[node name="Smelter" type="TextureButton" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox/SmelterPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
 theme = SubResource("Theme_bcr5n")
 texture_normal = ExtResource("17_764k2")
 
-[node name="Hammer" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="HammerPanel" type="Panel" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox"]
+custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_aeycx")
+script = ExtResource("19_m5n6o")
+
+[node name="Hammer" type="TextureButton" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox/HammerPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
 texture_normal = ExtResource("20_yc44m")
 
-[node name="Cutter" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="CutterPanel" type="Panel" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox"]
+custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rh4hl")
+script = ExtResource("19_m5n6o")
+
+[node name="Cutter" type="TextureButton" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox/CutterPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
 texture_normal = ExtResource("21_0u6l6")
 
-[node name="Trash" type="TextureButton" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="TrashPanel" type="Panel" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox"]
+custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_6tj7w")
+script = ExtResource("19_m5n6o")
+
+[node name="Trash" type="TextureButton" parent="CanvasLayer/ToolbarControl/IconPanel/ButtonBox/TrashPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
 texture_normal = ExtResource("22_nb7py")
+
+[node name="OptionsControl" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.722
+anchor_top = 0.031
+anchor_right = 0.983
+anchor_bottom = 0.13
+offset_left = 0.25592
+offset_top = -0.0880013
+offset_right = -0.416016
+offset_bottom = -0.240005
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OptionsBox" type="HBoxContainer" parent="CanvasLayer/OptionsControl"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_constants/separation = 20
+script = ExtResource("27_ba234")
+
+[node name="SettingsButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
+layout_mode = 2
+texture_normal = ExtResource("27_4yggy")
+
+[node name="SaveButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
+layout_mode = 2
+texture_normal = ExtResource("29_sdg4x")
+
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
+layout_mode = 2
+texture_normal = ExtResource("28_sbvrv")
+
+[node name="InventoryButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
+layout_mode = 2
+texture_normal = ExtResource("29_kpki6")
+script = ExtResource("32_im303")
+
+[node name="Hub" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -192.0
+offset_top = -192.0
+offset_right = 192.0
+offset_bottom = 192.0
+
+[node name="DeliverLabel" type="Label" parent="Hub"]
+layout_mode = 2
+offset_top = 10.0
+offset_right = 384.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0.392157, 0.4, 0.431373, 1)
+theme_override_fonts/font = SubResource("SystemFont_a622a")
+theme_override_font_sizes/font_size = 48
+text = "DELIVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemLabel" type="Label" parent="Hub"]
+layout_mode = 2
+offset_top = 65.0
+offset_right = 384.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.756863, 0.227451, 0.219608, 1)
+theme_override_fonts/font = SubResource("SystemFont_a622a")
+theme_override_font_sizes/font_size = 44
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("27_gcdp1")
+
+[node name="ItemTexture" type="TextureRect" parent="Hub"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_left = 128.0
+offset_top = 140.0
+offset_right = 256.0
+offset_bottom = 268.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("8_db3rx")
+script = ExtResource("28_7qoyu")
+
+[node name="ProgressBar" type="ProgressBar" parent="Hub"]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 280.0
+offset_right = 352.0
+offset_bottom = 296.0
+show_percentage = false
+script = ExtResource("29_adssx")
+
+[node name="ProgressLabel" type="Label" parent="Hub"]
+layout_mode = 2
+offset_top = 300.0
+offset_right = 384.0
+offset_bottom = 330.0
+theme_override_colors/font_color = Color(0.392157, 0.4, 0.431373, 1)
+theme_override_fonts/font = SubResource("SystemFont_a622a")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("29_vymck")

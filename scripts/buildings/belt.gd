@@ -5,18 +5,13 @@ class_name Belt
 # Properties
 @export var speed: float = 2.0  # Speed at which items move on the belt
 
-func initialize():
+func initialize(rotation: int):
+	output_direction = BuildData.directions[rotation]
+	#inputs = {-1: BuildData.directions[(rotation + 2) % 4]}
 	type = BuildData.BELT_ID
 
 func update_state(delta: float):
 	pass
-	#if stored_item != null:
-		#var target_position = grid_position + output_direction
-		#if can_move_to(target_position):
-			#WorldManager.move_stored_item(self, BuildingManager.get_building(target_position))
-		
-#func can_accept_item(type: int) -> bool:
-	#return stored_item != null
-	
+
 func _on_tick():
 	pass

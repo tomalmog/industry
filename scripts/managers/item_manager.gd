@@ -4,10 +4,6 @@ extends Node
 const IMMOVABLE = 0
 const MOVABLE = 1
 
-const GOLD_ID = 1
-const IRON_ID = 2
-const DIAMOND_ID = 3 
-
 const GOLD_ORE = 10
 const IRON_ORE = 20
 const BRONZE_ORE = 30
@@ -23,6 +19,8 @@ const BRONZE_INGOT = 32
 const GOLD_CUT = 13
 const IRON_CUT = 23
 const BRONZE_CUT = 33
+
+const COAL_ORE = 49
 
 var item_instances = {}
 
@@ -46,6 +44,8 @@ func _ready() -> void:
 	item_instances[BRONZE_INGOT] = preload("res://scenes/items/bronze_ingot.tscn")
 	item_instances[BRONZE_CUT] = preload("res://scenes/items/bronze_cut.tscn")
 	
+	item_instances[COAL_ORE] = preload("res://scenes/items/coal_ore.tscn")
+	
 	
 	pass
 
@@ -63,17 +63,11 @@ func _on_tick():
 	var visited_items = {}
 	
 	for item in items:
-		if (item.state == ItemManager.IMMOVABLE):
-			#item.set_state(ItemManager.MOVABLE)
-			print(item, 'item immovable')
 		item.is_moving = false
 
 	var outer_chain = []
 	
 	for item in items:
-		if item.get_state() == ItemManager.IMMOVABLE:
-			visited_items[item] = true
-			continue
 		
 		var visited_buildings = {}
 		
@@ -106,17 +100,11 @@ func _on_tick():
 					building_stack.push_back(next_building)
 										
 					# Check if the next belt can accept the item
-					if next_building and next_building.can_accept_item(current_item):
+					if next_building and next_building.can_accept_item(current_item, building.output_direction):
 						for i in range(chain.size() - 1, -1, -1):
 							var kvp = chain[i]
 							move_item_to_next_tile(kvp[0], kvp[1])
 							
-
-
-
-#if WorldManager.is_hub_tile(next_pos):
-						#for kvp in chain:
-							#move_item_to_next_tile(kvp[0], kvp[1])
 
 
 # Function to actually move the item to the next belt

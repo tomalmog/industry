@@ -7,25 +7,30 @@ class_name Building
 # Defines the general behavior and structure for all buildings.
 
 # Properties
-@export var type: int                            # type of building e.g 0: Smelter, 1: Harvester
+@export var type: int                              # type of building e.g 0: Smelter, 1: Harvester
 @export var grid_position: Vector2                 # position on tilemap
-@export var output_direction: Vector2 = Vector2.UP      # output_direction building is facing, default is up
-@export var input_direction: Vector2 = Vector2.DOWN
-@export var stored_item: Item = null             # reference to the item that is currently stored by the building 
-@export var moving_in_item: Node = null
-@export var operation_interval: int 
-var tick_counter: int = 0
 
+var output_direction: Vector2 = Vector2.UP      # output_direction building is facing, default is up
+#var input_direction: Vector2 = Vector2.DOWN
+
+var inputs = {}
+
+var stored_item: Item = null             # reference to the item that is currently stored by the building
+var inventory = {}
+
+
+var operation_interval: int 
+var tick_counter: int = 0
 var state: int = 0
 
 # Called when the node enters the scene tree for the first time
-func initialize():
+func initialize(rotation: int):
 	pass
 
 func get_next():
 	return grid_position + output_direction
 	
-func can_accept_item(item: Item):
+func can_accept_item(item: Item, input_direction: Vector2):
 	return is_empty()
 
 func is_empty() -> bool:
@@ -77,15 +82,4 @@ func remove_item(item: Node) -> bool:
 		stored_item = null
 		return true;
 	return false
-	
-	
-	# Polymorphic methods to be overridden by derived classes
-func move():
-	var next_building = BuildingManager.get_building(get_next())
-	
-	stored_item.stored_by = next_building
-	next_building.moving_in_item = stored_item
-	
-	stored_item = null
-	pass  # To be implemented in child classes
 	

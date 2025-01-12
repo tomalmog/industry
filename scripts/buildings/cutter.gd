@@ -3,7 +3,7 @@ extends TransformBuilding
 class_name Cutter
 
 # Called when the node enters the scene tree for the first time.
-func initialize():
+func initialize(rotation: int):
 	type = BuildData.CUTTER_ID
 	operation_interval = 16
 	

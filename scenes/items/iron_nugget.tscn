@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_iw6a8"]
 [ext_resource type="Texture2D" uid="uid://cm5a1ecsiarau" path="res://assets/items/iron_nugget.png" id="2_vyc5h"]
 
-[node name="IronNugget" instance=ExtResource("1_iw6a8")]
+[node name="Iron Nugget" instance=ExtResource("1_iw6a8")]
 texture = ExtResource("2_vyc5h")
 type = 21

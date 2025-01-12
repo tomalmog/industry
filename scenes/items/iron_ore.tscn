@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cu21h4rj25w4s" path="res://scenes/items/item.tscn" id="1_hs304"]
 [ext_resource type="Texture2D" uid="uid://c2uqm14uggkxm" path="res://assets/items/iron_ore.png" id="2_xbrwg"]
 
-[node name="IronOre" instance=ExtResource("1_hs304")]
+[node name="Iron Ore" instance=ExtResource("1_hs304")]
 texture = ExtResource("2_xbrwg")
 type = 20

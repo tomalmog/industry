@@ -72,9 +72,6 @@ func _draw():
 		var new_size = texture_size * texture_scale
 		
 		draw_texture_rect(texture, Rect2((texture_size - new_size) / 2, new_size), false)
-		
-		if state == ItemManager.IMMOVABLE:
-			draw_circle(Vector2(0, 0), 5, Color(1, 0, 0))
 
 # Update the item's logic (called manually or via another system)
 func update_item(delta: float):
@@ -86,3 +83,9 @@ func get_state():
 	
 func set_state(new_state: int):
 	state = new_state
+	
+func get_type():
+	return type
+	
+func set_type(new_type: int):
+	type = new_type

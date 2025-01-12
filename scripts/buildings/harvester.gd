@@ -4,7 +4,7 @@ class_name Harvester
 
 var resource_type: int         # Resource type the harvester produces
 
-func initialize():
+func initialize(rotation: int):
 	resource_type = ResourceManager.get_resource(grid_position)
 	operation_interval = 4
 	type = BuildData.HARVESTER_ID
@@ -22,5 +22,5 @@ func generate_resource():
 		
 		stored_item = item
 	
-func can_accept_item(item: Item) -> bool:
+func can_accept_item(item: Item, input_direction: Vector2) -> bool:
 	return false

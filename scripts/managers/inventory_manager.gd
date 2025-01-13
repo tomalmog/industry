@@ -1,7 +1,7 @@
 extends Node
 
 var IM = ItemManager
-var inventory = {IM.GOLD_ORE: 8, IM.IRON_CUT: 23, IM.BRONZE_INGOT: 301, IM. GOLD_INGOT: 1, IM.GOLD_NUGGET: 2, IM.GOLD_CUT: 3, IM.BRONZE_CUT: 4}
+var inventory = {IM.GOLD_ORE: 200, IM.IRON_CUT: 23, IM.BRONZE_INGOT: 301, IM. GOLD_INGOT: 120, IM.GOLD_NUGGET: 2, IM.GOLD_CUT: 3, IM.BRONZE_CUT: 4, IM.BRONZE_ORE: 300}
 
 var quests = [[IM.GOLD_ORE, 10], [IM.IRON_ORE, 15], [IM.BRONZE_NUGGET, 20], [IM.GOLD_INGOT, 30], [IM.IRON_INGOT, 30]]
 var quests_completed: int = 0

@@ -11,11 +11,10 @@ class_name Building
 @export var grid_position: Vector2                 # position on tilemap
 
 var output_direction: Vector2 = Vector2.UP      # output_direction building is facing, default is up
-#var input_direction: Vector2 = Vector2.DOWN
-
 var inputs = {}
 
 var stored_item: Item = null             # reference to the item that is currently stored by the building
+
 var inventory = {}
 
 
@@ -39,6 +38,8 @@ func is_empty() -> bool:
 func input_item():
 	pass
 
+func get_type():
+	return type
 
 # Handle custom interactions per building type (to be implemented in subclasses)
 func _on_tick():
@@ -51,35 +52,3 @@ func _on_tick():
 
 func _run_tick():
 	pass
-
-
-
-#### rarely used is below
-
-
-
-# Interact with an item
-func interact(item: Node):
-	pass  # To be implemented in child classes (e.g., crafting, processing)
-
-# Update the state of the building
-func update_state(delta: float):
-	pass  # Optional: Add logic for timers or state transitions
-
-
-	
-# Add an item to the building's inventory
-func add_item(item: Node) -> bool:
-	if is_empty():
-		stored_item = item
-		item.stored_by = self # maybe dont need this, items can be unaware of their owners. if needed, add this item stuff everywhere
-		return true
-	return false
-
-# Remove an item from the inventory
-func remove_item(item: Node) -> bool:
-	if !is_empty():
-		stored_item = null
-		return true;
-	return false
-	

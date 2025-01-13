@@ -7,9 +7,12 @@ var tick_timer: Timer
 var background_layer: Node2D
 var world: Node
 
+var state: int = GAMEPLAY_STATE
 
-
-
+const GAMEPLAY_STATE = 0
+const INVENTORY_STATE = 1
+const UPGRADE_STATE = 2
+const SETTINGS_STATE = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,19 +35,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_tick() -> void:
-	run_game_tick()
+	if state == GAMEPLAY_STATE:
+		BuildingManager._on_tick()
+		ItemManager._on_tick()
+	else:
+		ItemManager.set_state(state)
 	pass
 
-
-func run_game_tick() -> void:
-	
-	BuildingManager._on_tick()
-	
-	ItemManager._on_tick()
-
-	
-
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -82,3 +79,9 @@ func move_stored_item(building_one: Building, building_two: Building):
 func is_hub_tile(grid_position: Vector2):
 	return !(grid_position.x < -background_layer.get_hub_size() || grid_position.x >= background_layer.get_hub_size() || grid_position.y < -background_layer.get_hub_size() || grid_position.y >= background_layer.get_hub_size())
 		
+func get_state():
+	return state
+	
+func set_state(new_state: int):
+	state = new_state
+	ItemManager.set_state(state)

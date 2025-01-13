@@ -25,6 +25,11 @@ WorldManager="*res://scripts/managers/world_manager.gd"
 ResourceManager="*res://scripts/managers/resource_manager.gd"
 InventoryManager="*res://scripts/managers/inventory_manager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="Industry"

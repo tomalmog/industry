@@ -21,12 +21,18 @@ func _ready() -> void:
 			
 	for x in range(-hub_size, hub_size):
 		set_cell(Vector2(x, -hub_size), BuildData.ACCEPTER_ID, Vector2(0, 0), 0)
+		
 	for x in range(-hub_size, hub_size):
 		set_cell(Vector2(x, hub_size - 1), BuildData.ACCEPTER_ID, Vector2(2, 0), 0)
+
+		
 	for y in range(-hub_size, hub_size):
 		set_cell(Vector2(-hub_size, y), BuildData.ACCEPTER_ID, Vector2(3, 0), 0)
+		
+		
 	for y in range(-hub_size, hub_size):
 		set_cell(Vector2(hub_size - 1, y), BuildData.ACCEPTER_ID, Vector2(1, 0), 0)
+
 	
 	set_cell(Vector2(-hub_size, -hub_size), BuildData.ACCEPTER_ID, Vector2(7, 0), 0)
 	set_cell(Vector2(-hub_size, hub_size - 1), BuildData.ACCEPTER_ID, Vector2(6, 0), 0)

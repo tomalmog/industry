@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dmru1rftwki7n"]
+[gd_scene load_steps=63 format=3 uid="uid://dmru1rftwki7n"]
 
 [ext_resource type="Texture2D" uid="uid://c8ahj7fs452g4" path="res://assets/outline.png" id="2_k0q12"]
 [ext_resource type="Script" path="res://scripts/layers/background_layer.gd" id="3_5ls8h"]
@@ -217,19 +217,6 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="Theme" id="Theme_pqcyy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwflt"]
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.76453, 0.796274, 0.909764, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
 [sub_resource type="SystemFont" id="SystemFont_a622a"]
 font_names = PackedStringArray("Monospace")
 font_weight = 800
@@ -263,7 +250,6 @@ script = ExtResource("9_gwmok")
 script = SubResource("GDScript_pcwtl")
 
 [node name="ToolbarControl" type="Control" parent="CanvasLayer"]
-visible = false
 custom_minimum_size = Vector2(600, 96)
 layout_mode = 3
 anchors_preset = 7
@@ -487,26 +473,7 @@ layout_mode = 2
 texture_normal = ExtResource("29_kpki6")
 script = ExtResource("32_im303")
 
-[node name="Inventory" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchor_left = 0.3
-anchor_top = 0.05
-anchor_right = 0.7
-anchor_bottom = 0.95
-grow_horizontal = 2
-theme = SubResource("Theme_pqcyy")
-
-[node name="InventoryPanel" type="Panel" parent="CanvasLayer/Inventory"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_kwflt")
-
 [node name="Hub" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -192.0

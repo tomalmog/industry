@@ -9,6 +9,16 @@ var panel: Panel
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	for position in BuildingManager.buildings:
+		var building = BuildingManager.buildings[position]
+		if building:
+			# Use the building's type and rotation to set the tile
+			if building.get_type() != BuildData.ACCEPTER_ID:	
+				set_cell(position, building.type, Vector2(BuildData.get_rotation(building.output_direction), 0), 0)
+		
+	
+	
+	
 	camera = get_node("../Camera")
 	hub_size = get_node("../BackgroundLayer").get_hub_size()
 	panel = get_node("../CanvasLayer/ToolbarControl/IconPanel")

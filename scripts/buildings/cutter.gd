@@ -7,5 +7,5 @@ func initialize(rotation: int):
 	type = BuildData.CUTTER_ID
 	operation_interval = 16
 	
-	input_type = 2
+	inputs = {BuildData.directions[(rotation + 2) % 4]: 2}
 	pass

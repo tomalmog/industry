@@ -1,7 +1,7 @@
 extends Node
 
 var IM = ItemManager
-var inventory = {}
+var inventory = {IM.GOLD_ORE: 8, IM.IRON_CUT: 23, IM.BRONZE_INGOT: 301, IM. GOLD_INGOT: 1, IM.GOLD_NUGGET: 2, IM.GOLD_CUT: 3, IM.BRONZE_CUT: 4}
 
 var quests = [[IM.GOLD_ORE, 10], [IM.IRON_ORE, 15], [IM.BRONZE_NUGGET, 20], [IM.GOLD_INGOT, 30], [IM.IRON_INGOT, 30]]
 var quests_completed: int = 0
@@ -10,16 +10,17 @@ var curr_quest = quests[quests_completed]
 var item_label: Label
 var item_texture: TextureRect
 
+var is_first = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	
-	
-	item_label = get_node("/root/World/Hub/ItemLabel")
-	item_texture = get_node("/root/World/Hub/ItemTexture")
-	
+	reload()
 	pass # Replace with function body.
 
+func reload():
+	print('reloaded')
+	item_label = get_node("/root/World/Hub/ItemLabel")
+	item_texture = get_node("/root/World/Hub/ItemTexture")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,9 +30,11 @@ func _process(delta: float) -> void:
 	if inventory.has(item) && inventory[item] >= required:
 		quests_completed += 1
 		
+		if !item_label:
+			reload()
+		
 		item_label.update_quest_item()
 		item_texture.update_quest_item()
-	pass
 	
 
 

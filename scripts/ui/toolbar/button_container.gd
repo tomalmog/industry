@@ -12,7 +12,6 @@ func _ready():
 		# Connect the button press signal to the _button_pressed function, passing the corresponding building ID
 		var id = ids[counter]
 		texture_button.pressed.connect(func(): _button_pressed(id))
-		print(texture_button)
 		counter += 1
 	pass
 

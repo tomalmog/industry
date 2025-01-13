@@ -27,6 +27,7 @@ func _ready():
 	pass
 	
 func _process(delta: float) -> void:
+	
 	was_moved = false
 	
 	if stored_by == null:
@@ -34,16 +35,16 @@ func _process(delta: float) -> void:
 		pass
 	else:
 		stored_by.stored_item = self
+		#position = stored_by.position
 		
+	
 	if is_moving:
 		var distance_per_second = WorldManager.tile_size * WorldManager.ticks_per_second
 		var movement = output_direction * distance_per_second * delta
 		position += movement
-		
 
 		
-		
-	
+
 # Move the item to a new position
 func move(new_position: Vector2):
 	position = new_position
@@ -64,7 +65,6 @@ func spawn_at_building(building: Building):
 	
 	output_direction = stored_by.output_direction
 	
-
 # Draw the item (if needed for custom rendering)
 func _draw():
 	if texture:
@@ -89,3 +89,6 @@ func get_type():
 	
 func set_type(new_type: int):
 	type = new_type
+	
+func set_visibility(visibility: bool):
+	visible = visibility

@@ -1,8 +1,6 @@
 extends Node
 
-# states
-const IMMOVABLE = 0
-const MOVABLE = 1
+var state = WorldManager.GAMEPLAY_STATE
 
 const GOLD_ORE = 10
 const IRON_ORE = 20
@@ -46,24 +44,21 @@ func _ready() -> void:
 	
 	item_instances[COAL_ORE] = preload("res://scenes/items/coal_ore.tscn")
 	
-	
-	pass
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	
-	
-	
 	pass
+
+func stop_item_movement():
+	for item in items:
+		item.is_moving = false
+		item.position = item.stored_by.position
 
 # Function to handle all items' movement every tick
 func _on_tick():
-	var visited_items = {}
 	
-	for item in items:
-		item.is_moving = false
+	var visited_items = {}
+	stop_item_movement()
 
 	var outer_chain = []
 	
@@ -94,17 +89,19 @@ func _on_tick():
 					visited_items[current_item] = true
 					visited_buildings[building] = true
 
-					if next_building == null || current_item == null:
+					if next_building == null || current_item == null || next_building.type == BuildData.HARVESTER_ID:
 						break
 						
 					building_stack.push_back(next_building)
 										
 					# Check if the next belt can accept the item
-					if next_building and next_building.can_accept_item(current_item, building.output_direction):
+					if next_building and next_building.can_accept_item(current_item, building.output_direction * -1):
 						for i in range(chain.size() - 1, -1, -1):
 							var kvp = chain[i]
 							move_item_to_next_tile(kvp[0], kvp[1])
 							
+
+
 
 
 # Function to actually move the item to the next belt
@@ -114,10 +111,9 @@ func move_item_to_next_tile(item: Item, next_pos: Vector2) -> void:
 	WorldManager.move_stored_item(item.stored_by, next_belt)
 	
 # Function to spawn an item
-func spawn_item(type: int, state: int) -> Node:
+func spawn_item(type: int) -> Node:
 	var new_item = item_instances[type].instantiate()
 	new_item.type = type
-	new_item.state = state
 	
 	items.append(new_item)
 	WorldManager.world.add_child(new_item)
@@ -128,3 +124,15 @@ func delete_item(item: Item):
 	item.stored_by.stored_item = null
 	items.erase(item)
 	item.queue_free()
+	
+func get_state():
+	return state
+	
+func set_state(new_state: int):
+	state = new_state
+	if state == WorldManager.GAMEPLAY_STATE:
+		for item in items:
+			item.set_visibility(true)
+	else:
+		stop_item_movement()
+		

@@ -17,7 +17,7 @@ func _run_tick():
 # Generate a resource item and add it to the scene
 func generate_resource():
 	if !stored_item:
-		var item = ItemManager.spawn_item(resource_type, ItemManager.MOVABLE)
+		var item = ItemManager.spawn_item(resource_type)
 		item.spawn_at_building(self)
 		
 		stored_item = item

@@ -6,6 +6,8 @@ var resources = {}
 func _ready() -> void:
 	pass # Replace with function body.
 
+func get_resources():
+	return resources
 
 func get_resource(grid_position: Vector2):
 	if resources.has(grid_position):

@@ -9,7 +9,6 @@ extends Node2D
 @export var texture_scale: float = 0.75
 
 @export var type: int
-var state: int = 0  # Use this to define the current state of the item (e.g., idle, moving)
 
 var stored_by: Building = null  # Building or other system that holds the item
 var was_moved: bool = false
@@ -78,12 +77,6 @@ func update_item(delta: float):
 	# Perform any updates required for the item's behavior
 	pass
 	
-func get_state():
-	return state
-	
-func set_state(new_state: int):
-	state = new_state
-	
 func get_type():
 	return type
 	
@@ -92,3 +85,6 @@ func set_type(new_type: int):
 	
 func set_visibility(visibility: bool):
 	visible = visibility
+
+func get_visibility():
+	return visible

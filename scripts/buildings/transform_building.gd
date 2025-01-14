@@ -25,8 +25,7 @@ func input_item():
 	
 func _run_tick():
 	if is_empty() && is_generating && tick_counter >= operation_interval:
-		var item = ItemManager.spawn_item(output_type + 1)
-		item.spawn_at_building(self)
+		var item = ItemManager.spawn_item(output_type + 1, self)
 		
 		is_generating = false
 	pass

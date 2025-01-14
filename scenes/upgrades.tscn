@@ -1,13 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvgrcheonrwih"]
+[gd_scene load_steps=12 format=3 uid="uid://bvgrcheonrwih"]
 
 [ext_resource type="Texture2D" uid="uid://cuwcrwu4kto37" path="res://assets/icons/back_icon.png" id="1_r7pe6"]
 [ext_resource type="Script" path="res://scripts/ui/upgrades/upgrades.gd" id="1_w85gk"]
 [ext_resource type="Script" path="res://scripts/ui/inventory/back_button.gd" id="2_jdqn4"]
+[ext_resource type="Texture2D" uid="uid://c01j2aghgreq7" path="res://assets/icons/harvester_icon.png" id="4_v4qd0"]
+[ext_resource type="Texture2D" uid="uid://jdg7mouoxk3r" path="res://assets/items/gold_ore.png" id="5_40p6n"]
+[ext_resource type="Texture2D" uid="uid://c5cmdjts8nfbj" path="res://assets/icons/upgrade_icon.png" id="6_ofg8r"]
 
 [sub_resource type="SystemFont" id="SystemFont_c07lq"]
 font_names = PackedStringArray("Monospace")
 font_weight = 800
 subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8s2w"]
+bg_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glx6m"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_viy83"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t5ow"]
+bg_color = Color(0.42, 0.42, 0.42, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [node name="Upgrades" type="Control"]
 layout_mode = 3
@@ -25,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.678431, 0.678431, 0.678431, 1)
 
 [node name="InventoryLabel" type="Label" parent="."]
 layout_mode = 1
@@ -58,15 +82,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="UpgradeList" type="ItemList" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.7
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-allow_search = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_o8s2w")
 
 [node name="BackButton" type="TextureButton" parent="Panel"]
 layout_mode = 1
@@ -89,6 +105,88 @@ anchor_right = 0.7
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_glx6m")
 
 [node name="UpgradeList" type="VBoxContainer" parent="Panel/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+localize_numeral_system = false
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/UpgradeList"]
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Container" type="Container" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer/Control"]
+layout_mode = 2
+offset_left = -495.0
+offset_top = -1.0
+offset_right = -16.0
+offset_bottom = 79.0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_viy83")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer/Control/Panel"]
+layout_mode = 2
+offset_left = 16.0
+offset_right = 80.0
+offset_bottom = 80.0
+texture = ExtResource("4_v4qd0")
+stretch_mode = 3
+
+[node name="Panel2" type="Panel" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer/Control/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -379.0
+offset_top = -75.0
+offset_right = -369.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1t5ow")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer/Control/Panel"]
+layout_mode = 2
+offset_left = 130.0
+offset_right = 194.0
+offset_bottom = 80.0
+texture = ExtResource("5_40p6n")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer/Control/Panel"]
+layout_mode = 0
+offset_left = 316.6
+offset_top = 4.39999
+offset_right = 467.6
+offset_bottom = 76.4
+theme_override_icons/icon = ExtResource("6_ofg8r")
+text = "UPGRADE"
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer/Control/Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 310.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/UpgradeList/HBoxContainer/Control/Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 310.0
+offset_bottom = 75.0
+text = "test"
+horizontal_alignment = 1

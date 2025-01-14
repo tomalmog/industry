@@ -5,6 +5,9 @@ var item_list
 var sort_option_button
 var search_bar  # The LineEdit for searching
 
+const SORT_BY_NAME = 0
+const SORT_BY_QUANTITY = 1
+
 func _ready():
 	# get references to the itemlist and sortoptionbutton nodes
 	inventory = InventoryManager.get_inventory()
@@ -17,11 +20,10 @@ func _ready():
 	
 	# Connect the dropdown signal
 	sort_option_button.item_selected.connect(_on_sort_option_selected)
-	
 	search_bar.text_changed.connect(_on_search_text_changed)
 	
 	# Populate the item list
-	populate_item_list(inventory, inventory.keys())
+	_on_sort_option_selected(SORT_BY_NAME)
 
 
 func _on_search_text_changed(new_text):
@@ -52,8 +54,9 @@ func populate_item_list(inventory, sorted_keys):
 
 func _on_sort_option_selected(index):
 	inventory = InventoryManager.get_inventory()
+	search_bar.text = ""
 	
-	if index == 0:  # sort by name
+	if index == SORT_BY_NAME:  # sort by name
 		var sorted_keys = inventory.keys()
 		# merge sort the keys alphabetically
 		sorted_keys = merge_sort(sorted_keys, compare_by_name)
@@ -61,7 +64,7 @@ func _on_sort_option_selected(index):
 		# repopulate the item list with the sorted inventory (by key)
 		populate_item_list(inventory, sorted_keys)
 	
-	elif index == 1:  # Sort by quantity
+	elif index == SORT_BY_QUANTITY:  # Sort by quantity
 		var sorted_keys = inventory.keys()
 
 		# rerge sort the keys based on the value (quantity) in the dictionary

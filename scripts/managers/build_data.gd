@@ -10,12 +10,12 @@ const CUTTER_ID = 6
 const TRASH_ID = 9
 const ACCEPTER_ID = 10
 
-var belt_icon
-var harvester_icon
-var smelter_icon
-var hammer_icon
-var cutter_icon
-var trash_icon
+var belt_icons
+var harvester_icons
+var smelter_icons
+var hammer_icons
+var cutter_icons
+var trash_icons
 
 const UP = 0;
 const RIGHT = 1;
@@ -33,14 +33,14 @@ var building_icons
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	belt_icon = preload("res://assets/icons/belt_icon.png")
-	harvester_icon = preload("res://assets/icons/harvester_icon.png")
-	smelter_icon = preload("res://assets/icons/smelter_icon.png")
-	hammer_icon = preload("res://assets/icons/hammer_icon.png")
-	cutter_icon = preload("res://assets/icons/cutter_icon.png")
-	trash_icon = preload("res://assets/icons/trash_icon.png")
+	belt_icons = [preload("res://assets/icons/belt_one_icon.png"), preload("res://assets/icons/belt_two_icon.png"), preload("res://assets/icons/belt_three_icon.png")]
+	harvester_icons = [preload("res://assets/icons/harvester_one_icon.png"), preload("res://assets/icons/harvester_two_icon.png"), preload("res://assets/icons/harvester_three_icon.png")]
+	smelter_icons = [preload("res://assets/icons/smelter_one_icon.png"), preload("res://assets/icons/smelter_two_icon.png"), preload("res://assets/icons/smelter_three_icon.png")]
+	hammer_icons = [preload("res://assets/icons/hammer_one_icon.png"), preload("res://assets/icons/hammer_two_icon.png"), preload("res://assets/icons/hammer_three_icon.png")]
+	cutter_icons = [preload("res://assets/icons/cutter_one_icon.png"), preload("res://assets/icons/cutter_two_icon.png"), preload("res://assets/icons/cutter_three_icon.png")]
+	trash_icons = [preload("res://assets/icons/trash_icon.png")]
 	
-	building_icons = {BELT_ID: belt_icon, HARVESTER_ID: harvester_icon, SMELTER_ID: smelter_icon, HAMMER_ID: hammer_icon, CUTTER_ID: cutter_icon, TRASH_ID: trash_icon}
+	building_icons = {BELT_ID: belt_icons, HARVESTER_ID: harvester_icons, SMELTER_ID: smelter_icons, HAMMER_ID: hammer_icons, CUTTER_ID: cutter_icons, TRASH_ID: trash_icons}
 
 func get_rotation(direction: Vector2):
 	for rotation in directions:
@@ -48,7 +48,7 @@ func get_rotation(direction: Vector2):
 			return rotation
 			
 func get_building_icon(id: int):
-	return building_icons[id]
+	return building_icons[id][UpgradeManager.get_building_level(id)]
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

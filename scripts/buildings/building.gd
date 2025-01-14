@@ -7,20 +7,19 @@ class_name Building
 # Defines the general behavior and structure for all buildings.
 
 # Properties
-@export var type: int                              # type of building e.g 0: Smelter, 1: Harvester
-@export var grid_position: Vector2                 # position on tilemap
-
+var type: int                               # type of building e.g 0: Smelter, 1: Harvester
+var grid_position: Vector2                  # position on tilemap
 var output_direction: Vector2 = Vector2.UP      # output_direction building is facing, default is up
+var stored_item: Item = null                # reference to the item that is currently stored by the building
+
+# defined in initialization of building
 var inputs = {}
-
-var stored_item: Item = null             # reference to the item that is currently stored by the building
-
-var inventory = {}
-
-
 var operation_interval: int 
+var operation_intervals
 var tick_counter: int = 0
-var state: int = 0
+
+func upgrade_building():
+	operation_interval = operation_intervals[UpgradeManager.get_building_level(self.type)]
 
 # Called when the node enters the scene tree for the first time
 func initialize(rotation: int):
@@ -40,6 +39,15 @@ func input_item():
 
 func get_type():
 	return type
+	
+func get_pos():
+	return type
+	
+func get_direction():
+	return output_direction
+	
+func get_stored_item():
+	return stored_item
 
 # Handle custom interactions per building type (to be implemented in subclasses)
 func _on_tick():

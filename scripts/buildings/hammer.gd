@@ -7,7 +7,7 @@ func initialize(rotation: int):
 	
 	inputs = {BuildData.directions[(rotation + 2) % 4]: 1}
 	
-	type = BuildData.SMELTER_ID
-	operation_interval = 12
-	
+	type = BuildData.HAMMER_ID
+	operation_intervals = [12, 6, 3]
+	operation_interval = operation_intervals[UpgradeManager.get_building_level(type)]
 	pass

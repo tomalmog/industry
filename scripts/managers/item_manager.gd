@@ -2,28 +2,32 @@ extends Node
 
 var state = WorldManager.GAMEPLAY_STATE
 
+const ORE = 0
 const GOLD_ORE = 10
 const IRON_ORE = 20
 const BRONZE_ORE = 30
 
+const NUGGET = 1
 const GOLD_NUGGET = 11
 const IRON_NUGGET = 21
 const BRONZE_NUGGET = 31
 
+const INGOT = 2
 const GOLD_INGOT = 12
 const IRON_INGOT = 22
 const BRONZE_INGOT = 32
 
+const CUT = 3
 const GOLD_CUT = 13
 const IRON_CUT = 23
 const BRONZE_CUT = 33
 
-const COAL_ORE = 49
+const COAL = 49
 
 var item_instances = {}
 
 
-@export var items: Array[Item] = []  # List of all items in the game
+var items: Array[Item] = []  # List of all items in the game
 
 
 func _ready() -> void:
@@ -42,7 +46,7 @@ func _ready() -> void:
 	item_instances[BRONZE_INGOT] = preload("res://scenes/items/bronze_ingot.tscn")
 	item_instances[BRONZE_CUT] = preload("res://scenes/items/bronze_cut.tscn")
 	
-	item_instances[COAL_ORE] = preload("res://scenes/items/coal_ore.tscn")
+	item_instances[COAL] = preload("res://scenes/items/coal_ore.tscn")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -111,12 +115,14 @@ func move_item_to_next_tile(item: Item, next_pos: Vector2) -> void:
 	WorldManager.move_stored_item(item.stored_by, next_belt)
 	
 # Function to spawn an item
-func spawn_item(type: int) -> Node:
+func spawn_item(type: int, building: Building) -> Node:
 	var new_item = item_instances[type].instantiate()
 	new_item.type = type
+	new_item.spawn_at_building(building)
 	
 	items.append(new_item)
-	WorldManager.world.add_child(new_item)
+	WorldManager.add_child(new_item)
+	
 	return new_item
 	
 func delete_item(item: Item):

@@ -27,8 +27,13 @@ func get_building(pos: Vector2):
 		return buildings[pos]
 	return null
 
+func get_buildings():
+	return buildings
+	
+func set_buildings(new_buildings: Dictionary):
+	buildings = new_buildings
 
-func spawn_building(grid_position: Vector2, type: int) -> Node2D:
+func spawn_building(grid_position: Vector2, type: int, direction: Vector2) -> Node2D:
 	
 	var building = BuildData.building_types[type].new()
 	
@@ -37,7 +42,9 @@ func spawn_building(grid_position: Vector2, type: int) -> Node2D:
 		ItemManager.delete_item(buildings[grid_position].stored_item)
 		
 	building.grid_position = grid_position
+	building.position = WorldManager.tilemap_to_local(grid_position)
 	buildings[grid_position] = building
+	building.output_direction = direction
 	
 	building.initialize(BuildData.current_tile_rotations[type])
 	return building

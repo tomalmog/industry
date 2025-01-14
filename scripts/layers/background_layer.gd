@@ -1,7 +1,7 @@
 extends TileMapLayer
 
 @export var chunk_size = 150
-var hub_size = 3
+var hub_size = WorldManager.HUB_SIZE
 
 var top_left = Vector2(-chunk_size, -chunk_size)
 var bottom_right = Vector2(chunk_size, chunk_size)
@@ -17,7 +17,7 @@ func _ready() -> void:
 	for x in range(-hub_size, hub_size):
 		for y in range(-hub_size, hub_size):
 			set_cell(Vector2(x, y), BuildData.ACCEPTER_ID, Vector2(8, 0), 0)
-			BuildingManager.spawn_building(Vector2(x, y), BuildData.ACCEPTER_ID)
+			BuildingManager.spawn_building(Vector2(x, y), BuildData.ACCEPTER_ID, Vector2.UP)
 			
 	for x in range(-hub_size, hub_size):
 		set_cell(Vector2(x, -hub_size), BuildData.ACCEPTER_ID, Vector2(0, 0), 0)
@@ -45,7 +45,3 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
-func get_hub_size():
-	return hub_size

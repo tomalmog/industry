@@ -1,11 +1,8 @@
 extends Node2D
 
 var tick_timer: Timer
-@export var ticks_per_second: int = 4
-@export var tile_size = 64
-
-var background_layer: Node2D
-var world: Node
+var ticks_per_second = 4
+var tile_size = 64
 
 var state: int = GAMEPLAY_STATE
 
@@ -14,13 +11,13 @@ const INVENTORY_STATE = 1
 const UPGRADE_STATE = 2
 const SETTINGS_STATE = 3
 
+const HUB_SIZE = 3
+
+var camera_data = [Vector2(0, 0), Vector2(1, 1)]
+var tutorial_data = [false, false, 0]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	world = get_tree().root
-	
-	background_layer = get_node("/root/World/BackgroundLayer")
-	
-	
 	tick_timer = Timer.new()
 	tick_timer.wait_time = 1.0 / ticks_per_second
 	tick_timer.autostart = true
@@ -29,7 +26,6 @@ func _ready() -> void:
 	
 	tick_timer.connect("timeout", Callable(self, "_on_tick"))
 	
-
 	
 	
 	pass # Replace with function body.
@@ -40,7 +36,8 @@ func _on_tick() -> void:
 		ItemManager._on_tick()
 	else:
 		ItemManager.set_state(state)
-	pass
+		
+	SaveDataManager._on_tick()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,7 +64,7 @@ func delete_tile_item(pos: Vector2):
 func move_stored_item(building_one: Building, building_two: Building):
 	var item = building_one.stored_item
 	if (item != null && item.was_moved == false):
-		item.visible = true
+		item.set_visibility(true)
 		item.was_moved = true
 		
 		item.move_to_building(building_two)
@@ -75,9 +72,6 @@ func move_stored_item(building_one: Building, building_two: Building):
 		
 		building_one.stored_item = null
 		
-
-func is_hub_tile(grid_position: Vector2):
-	return !(grid_position.x < -background_layer.get_hub_size() || grid_position.x >= background_layer.get_hub_size() || grid_position.y < -background_layer.get_hub_size() || grid_position.y >= background_layer.get_hub_size())
 		
 func get_state():
 	return state
@@ -85,3 +79,20 @@ func get_state():
 func set_state(new_state: int):
 	state = new_state
 	ItemManager.set_state(state)
+	
+func get_camera():
+	return camera_data
+
+func save_camera(pos: Vector2, zoom: Vector2):
+	camera_data = [pos, zoom]
+	
+func get_tutorial_data():
+	return tutorial_data
+
+func set_tutorial_data(data, index: int):
+	tutorial_data[index] = data
+	
+func tilemap_to_local(grid_position: Vector2):
+	var building_layer = get_node("/root/World/BuildingLayer")
+	
+	return building_layer.get_map_to_local(grid_position)

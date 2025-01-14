@@ -18,7 +18,12 @@ func open_inventory():
 	
 	var inventory_scene = preload("res://scenes/inventory.tscn")
 	
+	get_node("/root/World/Camera").save_camera()
+	
 	get_tree().change_scene_to_packed(inventory_scene)
 	WorldManager.set_state(WorldManager.INVENTORY_STATE)
+	
+	
+	
 	for item in ItemManager.items:
 		item.set_visibility(false)

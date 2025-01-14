@@ -46,6 +46,9 @@ func get_pos():
 func get_direction():
 	return output_direction
 	
+func get_direction_int():
+	return BuildData.directions_by_vector[output_direction]
+	
 func get_stored_item():
 	return stored_item
 

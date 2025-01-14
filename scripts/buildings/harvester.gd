@@ -20,8 +20,6 @@ func _run_tick():
 func generate_resource():
 	if !stored_item:
 		var item = ItemManager.spawn_item(resource_type, self)
-		
-		#stored_item = item
 	
 func can_accept_item(item: Item, input_direction: Vector2) -> bool:
 	return false

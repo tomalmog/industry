@@ -1,6 +1,6 @@
 extends Node
 
-var state = WorldManager.GAMEPLAY_STATE
+var state: int
 
 const ORE = 0
 const GOLD_ORE = 10
@@ -27,10 +27,14 @@ const COAL = 49
 var item_instances = {}
 
 
-var items: Array[Item] = []  # List of all items in the game
+var items: Array[Item]  # List of all items in the game
 
 
 func _ready() -> void:
+	
+	state = WorldManager.GAMEPLAY_STATE
+	items = []
+	
 	item_instances[GOLD_ORE] = preload("res://scenes/items/gold_ore.tscn")
 	item_instances[GOLD_NUGGET] = preload("res://scenes/items/gold_nugget.tscn")
 	item_instances[GOLD_INGOT] = preload("res://scenes/items/gold_ingot.tscn")
@@ -106,8 +110,6 @@ func _on_tick():
 							
 
 
-
-
 # Function to actually move the item to the next belt
 func move_item_to_next_tile(item: Item, next_pos: Vector2) -> void:
 	var next_belt = BuildingManager.get_building(next_pos)
@@ -142,3 +144,5 @@ func set_state(new_state: int):
 	else:
 		stop_item_movement()
 		
+func get_items():
+	return items

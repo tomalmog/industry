@@ -25,10 +25,6 @@ func _ready() -> void:
 	add_child(tick_timer)
 	
 	tick_timer.connect("timeout", Callable(self, "_on_tick"))
-	
-	
-	
-	pass # Replace with function body.
 
 func _on_tick() -> void:
 	if state == GAMEPLAY_STATE:
@@ -38,13 +34,6 @@ func _on_tick() -> void:
 		ItemManager.set_state(state)
 		
 	SaveDataManager._on_tick()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 	
 func set_tile(pos: Vector2, building: Node2D):
 	

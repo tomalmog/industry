@@ -66,8 +66,6 @@ func place_building(grid_position: Vector2, id: int):
 	
 	var new_building = BuildingManager.spawn_building(grid_position, id, BuildData.directions[BuildData.current_tile_rotations[id]])
 	
-	new_building.type = id
-	
 func place_upgraded_building(grid_position: Vector2):
 	var atlas_coords = get_cell_atlas_coords(grid_position)
 	var id = get_cell_source_id(grid_position)

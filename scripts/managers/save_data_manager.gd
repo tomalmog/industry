@@ -23,6 +23,9 @@ func _on_tick():
 func _ready() -> void:
 	load_game_data()
 
+func clear_save_data():
+	save_file("", SAVE_FILE_PATH)
+
 func save_game_data() -> void:
 	# Save resource data
 	var resources = ResourceManager.get_resources()
@@ -66,6 +69,7 @@ func save_game_data() -> void:
 
 func load_game_data() -> void:
 	# Load the consolidated game data from the single file
+	
 	var loaded_data = load_file(SAVE_FILE_PATH)
 	if loaded_data:
 		# Load resources
@@ -102,6 +106,11 @@ func load_game_data() -> void:
 			
 		if loaded_data.has("has_opened_tutorial"):
 			WorldManager.set_tutorial_data(bool(loaded_data["has_opened_tutorial"]), 0)
+	
+		
+		
+		
+		
 
 
 func string_to_vector2(str: String) -> Vector2:
@@ -115,46 +124,40 @@ func string_to_vector2(str: String) -> Vector2:
 
 	return Vector2(x, y)
 
-
-func save_file(json_string: String, file_path: String):
-	
-	# stop if godot fails to open the file
+func save_file(json_string: String, file_path: String) -> bool:
+	# attempt to open the file for writing
 	var file = FileAccess.open(file_path, FileAccess.ModeFlags.WRITE)
 	if file == null:
-		print("Failed to open file for writing!")
-		return
+		push_error("Failed to open file for writing at path: %s" % file_path)
+		return false
 	
-	# stores the content in the file then closes it
+	# write the content to the file
 	file.store_string(json_string)
 	file.close()
-	
-	# returns success 
 	return true
 
-func load_file(file_path: String):
-	
-	# stop if file does not exists
+
+func load_file(file_path: String) -> Dictionary:
+	# check if the file exists
 	if !FileAccess.file_exists(file_path):
-		print("File not found!")
-		return
-		
-	# stop if file cannot be opened for reading
+		push_error("File not found at path: %s" % file_path)
+		return {}
+	
+	# attempt to open the file for reading
 	var file = FileAccess.open(file_path, FileAccess.ModeFlags.READ)
 	if file == null:
-		print("Failed to open file for reading!")
-		return
-
-	# read the JSON string and parse it back into a dictionary
+		push_error("Failed to open file for reading at path: %s" % file_path)
+		return {}
+	
+	# Read the content of the file
 	var json_string = file.get_as_text()
-	var result = JSON.parse_string(json_string)
-	
-	# stop if the parsing returned an error
-	if result.has("error") and result["error"] != OK:
-		print("Failed to parse JSON: ", result.error_message)
-		return
-		
-	# close file
 	file.close()
+
+	# Parse the JSON string
+	var parse_result = JSON.parse_string(json_string)
+	if parse_result == null:
+		push_error("Failed to parse JSON: The result is null.")
+		return {}
 	
-	# return the contents of the file
-	return result
+	# Return the parsed dictionary
+	return parse_result

@@ -1,9 +1,10 @@
 extends Node
 
-@export var buildings = {}
+var buildings: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	buildings = {}
 	pass # Replace with function body.
 
 
@@ -11,9 +12,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-#func _on_pre_tick():
-	#for building in buildings:
-		#buildings[building]._on_pre_tick()
 		
 func _on_tick():
 	
@@ -41,12 +39,13 @@ func spawn_building(grid_position: Vector2, type: int, direction: Vector2) -> No
 		
 		ItemManager.delete_item(buildings[grid_position].stored_item)
 		
+	building.type = type
 	building.grid_position = grid_position
 	building.position = WorldManager.tilemap_to_local(grid_position)
 	buildings[grid_position] = building
 	building.output_direction = direction
 	
-	building.initialize(BuildData.current_tile_rotations[type])
+	building.initialize(BuildData.directions_by_vector[direction])
 	return building
 	
 func delete_building(grid_position: Vector2):

@@ -1,9 +1,10 @@
 extends Node
 
-var resources = {}
+var resources: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	resources = {}
 	pass # Replace with function body.
 
 func get_resources():

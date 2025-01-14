@@ -1,15 +1,14 @@
 extends TextureRect
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+# Pre: none
+# Post: none
+# Description: updates based on bquest item
+func _ready():
 	update_quest_item()
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+# Pre: none
+# Post: none
+# Description: update texture based on current quest item
 func update_quest_item():
 	var item_scene = ItemManager.item_instances[InventoryManager.get_quest_item()].instantiate()
-	
 	texture = item_scene.texture

@@ -3,18 +3,19 @@ extends Node
 var BD = BuildData
 var IM = ItemManager
 
-var building_levels = {BD.HARVESTER_ID: 0, BD.BELT_ID: 0, BD.SMELTER_ID: 0, BD.HAMMER_ID: 0, BD.CUTTER_ID: 0, BD.TRASH_ID: 0}
+var building_levels: Dictionary
 
-var upgrade_requirements = {
+var upgrade_requirements: Dictionary
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	building_levels = {BD.HARVESTER_ID: 0, BD.BELT_ID: 0, BD.SMELTER_ID: 0, BD.HAMMER_ID: 0, BD.CUTTER_ID: 0, BD.TRASH_ID: 0}
+	upgrade_requirements = {
 	BD.HARVESTER_ID: [[IM.GOLD_ORE, 100], [IM.GOLD_ORE, 250]],
 	BD.SMELTER_ID: [[IM.BRONZE_ORE, 100], [IM.BRONZE_ORE, 250]],
 	BD.HAMMER_ID: [[IM.GOLD_INGOT, 100], [IM.IRON_INGOT, 200]], 
 	BD.CUTTER_ID: [[IM.GOLD_CUT, 100], [IM.IRON_CUT, 250]]
 	}
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

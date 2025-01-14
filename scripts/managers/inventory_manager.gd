@@ -1,20 +1,34 @@
 extends Node
 
 var IM = ItemManager
-#var inventory = {IM.GOLD_ORE: 5, IM.IRON_ORE: 300, IM.IRON_CUT: 23, IM.BRONZE_INGOT: 301, IM. GOLD_INGOT: 120, IM.GOLD_NUGGET: 2, IM.GOLD_CUT: 3, IM.BRONZE_CUT: 4, IM.BRONZE_ORE: 300}
-var inventory = {}
+var inventory: Dictionary
 
-var quests = [[IM.GOLD_ORE, 10], [IM.IRON_ORE, 15], [IM.BRONZE_NUGGET, 20], [IM.GOLD_INGOT, 30], [IM.IRON_INGOT, 30]]
-var quests_completed: int = 0
-var curr_quest = quests[quests_completed]
+var quests = [
+	[IM.GOLD_ORE, 50], 
+	[IM.IRON_ORE, 150], 
+	[IM.GOLD_NUGGET, 50], 
+	[IM.BRONZE_NUGGET, 100], 
+	[IM.BRONZE_INGOT, 150],
+	[IM.IRON_INGOT, 200],
+	[IM.BRONZE_INGOT, 150],
+	[IM.BRONZE_INGOT, 150]]
+	
+var quests_completed: int
+var curr_quest: Array
 
 var item_label: Label
 var item_texture: TextureRect
 
-var is_first = true
+var is_first: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	inventory = {}
+	quests_completed = 0
+	curr_quest = quests[quests_completed]
+	
+	is_first = true
+	
 	reload()
 	pass # Replace with function body.
 

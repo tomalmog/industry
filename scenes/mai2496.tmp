@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://dmru1rftwki7n"]
+[gd_scene load_steps=69 format=3 uid="uid://dmru1rftwki7n"]
 
 [ext_resource type="Texture2D" uid="uid://c8ahj7fs452g4" path="res://assets/outline.png" id="2_k0q12"]
 [ext_resource type="Script" path="res://scripts/layers/background_layer.gd" id="3_5ls8h"]
@@ -32,7 +32,6 @@
 [ext_resource type="Texture2D" uid="uid://bxbmpoawl8q8q" path="res://assets/icons/tutorial_icon.png" id="28_k1ti7"]
 [ext_resource type="Texture2D" uid="uid://c5cmdjts8nfbj" path="res://assets/icons/upgrade_icon.png" id="28_sbvrv"]
 [ext_resource type="Script" path="res://scripts/ui/hub/progress_bar.gd" id="29_adssx"]
-[ext_resource type="Texture2D" uid="uid://si6w4wtjiwvi" path="res://assets/icons/tutorial_icon_pressed.png" id="29_d0vvo"]
 [ext_resource type="Texture2D" uid="uid://blimtgavke1ts" path="res://assets/icons/inventory_icon.png" id="29_kpki6"]
 [ext_resource type="Texture2D" uid="uid://diav3fq8202bs" path="res://assets/icons/save_icon.png" id="29_sdg4x"]
 [ext_resource type="Script" path="res://scripts/ui/options/tutorial_button.gd" id="29_utsv8"]
@@ -40,14 +39,10 @@
 [ext_resource type="Texture2D" uid="uid://b4h0ibh4li16t" path="res://assets/icons/clear_save_icon.png" id="30_50eai"]
 [ext_resource type="Script" path="res://scripts/ui/options/save_button.gd" id="30_ca8jx"]
 [ext_resource type="Script" path="res://scripts/ui/options/clear_save_button.gd" id="31_62h4i"]
-[ext_resource type="Texture2D" uid="uid://irndy0vxkibc" path="res://assets/icons/clear_save_icon_pressed.png" id="31_78idw"]
 [ext_resource type="Script" path="res://scripts/ui/options/inventory_button.gd" id="32_im303"]
 [ext_resource type="Script" path="res://scripts/ui/options/upgrade_button.gd" id="32_k106n"]
-[ext_resource type="Texture2D" uid="uid://xclvjqkqsjd7" path="res://assets/icons/save_icon_pressed.png" id="33_6sdbe"]
 [ext_resource type="Texture2D" uid="uid://cs3r0ke1dnvyk" path="res://assets/icons/move_icon.png" id="35_1h2xr"]
 [ext_resource type="Script" path="res://scripts/ui/Controls/tutorial_panel.gd" id="36_y21e6"]
-[ext_resource type="Script" path="res://scripts/ui/confirm/no_button.gd" id="43_07xn3"]
-[ext_resource type="Script" path="res://scripts/ui/confirm/yes_button.gd" id="44_k84c6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ojuy"]
 texture = ExtResource("3_uifx1")
@@ -263,13 +258,6 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tj7w"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ndfs"]
-bg_color = Color(0.243137, 0.247059, 0.278431, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -499,7 +487,7 @@ anchor_left = 0.722
 anchor_top = 0.031
 anchor_right = 0.983
 anchor_bottom = 0.13
-offset_left = -107.744
+offset_left = -14.744
 offset_top = -0.0879993
 offset_right = -0.416016
 offset_bottom = -0.239998
@@ -518,19 +506,16 @@ script = ExtResource("27_ba234")
 [node name="TutorialButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
 layout_mode = 2
 texture_normal = ExtResource("28_k1ti7")
-texture_pressed = ExtResource("29_d0vvo")
 script = ExtResource("29_utsv8")
 
 [node name="ClearSaveButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
 layout_mode = 2
 texture_normal = ExtResource("30_50eai")
-texture_pressed = ExtResource("31_78idw")
 script = ExtResource("31_62h4i")
 
 [node name="SaveButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
 layout_mode = 2
 texture_normal = ExtResource("29_sdg4x")
-texture_pressed = ExtResource("33_6sdbe")
 script = ExtResource("30_ca8jx")
 
 [node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/OptionsControl/OptionsBox"]
@@ -604,90 +589,6 @@ offset_top = 158.0
 offset_right = 195.0
 offset_bottom = 189.0
 text = "NEXT"
-
-[node name="ConfirmControl" type="Control" parent="CanvasLayer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="CanvasLayer/ConfirmControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8ndfs")
-
-[node name="Label" type="Label" parent="CanvasLayer/ConfirmControl/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -39.0
-offset_top = 20.0
-offset_right = 39.0
-offset_bottom = 43.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.909804, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "CONFIRM "
-horizontal_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ConfirmControl/Panel"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -40.0
-offset_right = 75.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[center]DO YOU WANT TO CLEAR YOUR SAVE[/center]"
-
-[node name="NoButton" type="Button" parent="CanvasLayer/ConfirmControl/Panel"]
-custom_minimum_size = Vector2(60, 30)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = -47.0
-offset_right = 82.0
-offset_bottom = -16.0
-grow_vertical = 0
-text = "NO"
-script = ExtResource("43_07xn3")
-
-[node name="YesButton" type="Button" parent="CanvasLayer/ConfirmControl/Panel"]
-custom_minimum_size = Vector2(60, 30)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 119.0
-offset_top = -47.0
-offset_right = 179.0
-offset_bottom = -16.0
-grow_vertical = 0
-text = "YES"
-script = ExtResource("44_k84c6")
 
 [node name="Hub" type="Control" parent="."]
 layout_mode = 3

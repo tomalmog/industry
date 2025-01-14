@@ -23,6 +23,7 @@ const DOWN = 2;
 const LEFT = 3;
 
 const directions = {UP: Vector2.UP, RIGHT: Vector2.RIGHT, DOWN: Vector2.DOWN, LEFT: Vector2.LEFT}
+const directions_by_vector = {Vector2.UP: UP, Vector2.RIGHT: RIGHT, Vector2.DOWN: DOWN, Vector2.LEFT: LEFT}
 
 var current_tile_id = NO_SELECTION
 var current_tile_rotations = {NO_SELECTION: 0, HARVESTER_ID: 0, BELT_ID: 0, SMELTER_ID: 0, HAMMER_ID: 0, CUTTER_ID: 0, TRASH_ID: 0, ACCEPTER_ID: 0}

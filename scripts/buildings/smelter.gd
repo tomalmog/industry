@@ -2,16 +2,18 @@ extends TransformBuilding
 
 class_name Smelter
 
-var has_coal: bool = false
-var has_ore: bool = false
+var has_coal: bool = true
+var has_ore: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func initialize(rotation: int):
+	has_coal = false
+	has_ore = false
+	is_generating = false
 	var BD = BuildData
 	
 	# Define input directions and expected item types
 	inputs = {BD.directions[(rotation + 2) % 4]: ItemManager.ORE, BD.directions[(rotation + 3) % 4]: ItemManager.COAL}
-	#inputs = {BD.directions[(rotation + 2) % 4], BD.directions[(rotation + 3) % 4]]
 	
 	type = BuildData.SMELTER_ID
 	operation_intervals = [8, 4, 2]

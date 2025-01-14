@@ -1,9 +1,9 @@
 extends TileMapLayer
 
 var resource_types = [ItemManager.GOLD_ORE, ItemManager.IRON_ORE, ItemManager.BRONZE_ORE, ItemManager.COAL]
-var grid_min: Vector2 = Vector2(-250, -250)  # Minimum grid boundary
-var grid_max: Vector2 = Vector2(250, 250)   # Maximum grid boundary
-var max_resources = 3000  # Total number of resources to spawn
+var grid_min: Vector2 = Vector2(-25, -25)  # Minimum grid boundary
+var grid_max: Vector2 = Vector2(25, 25)   # Maximum grid boundary
+var max_resources = 50  # Total number of resources to spawn
 var min_distance = 6  # Minimum distance between spawned resources
 
 var hub_padding = 4

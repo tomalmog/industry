@@ -36,9 +36,9 @@ func initialize(rotation: int):
 # description: checks if the smelter can accept the given item (coal or ore) from the specified input direction
 func can_accept_item(item: Item, input_direction: Vector2) -> bool:
 	if inputs.has(input_direction):
-		if item.type == ItemManager.COAL and !has_coal:
+		if item.get_type() == ItemManager.COAL and !has_coal:
 			return true
-		elif item.type % 10 == ItemManager.ORE and !has_ore:
+		elif item.get_type() % 10 == ItemManager.ORE and !has_ore:
 			return true
 	return false
 
@@ -47,16 +47,16 @@ func can_accept_item(item: Item, input_direction: Vector2) -> bool:
 # description: handles the input of an item (coal or ore) into the smelter and starts the generation process if applicable
 func input_item():
 	# Check the type of the stored item, delete it from the world and mark it as accepted in self
-	if stored_item.type == ItemManager.COAL:
+	if stored_item.get_type() == ItemManager.COAL:
 		# delete item
 		ItemManager.delete_item(stored_item)
 		stored_item = null
 		
 		# mark as accepted
 		has_coal = true
-	elif stored_item.type % 10 == ItemManager.ORE:
+	elif stored_item.get_type() % 10 == ItemManager.ORE:
 		# set output type 
-		output_type = stored_item.type
+		output_type = stored_item.get_type()
 		
 		# delete item
 		ItemManager.delete_item(stored_item)

@@ -101,6 +101,14 @@ func populate_upgrade_list():
 			progress_bar.value = collected
 			progress_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			progress_container.add_child(progress_bar)
+			
+			# create a new stylebox for the background
+			var stylebox = StyleBoxFlat.new()
+			stylebox.bg_color = Color("CF9474")  # set background color to brown / orange
+			stylebox.set_corner_radius_all(8) #set corner radius 
+			
+			# attach to progress bar
+			progress_bar.add_theme_stylebox_override("background", stylebox)
 
 			var progress_label = Label.new()
 			progress_label.text = "%d / %d" % [collected, required]
@@ -109,7 +117,7 @@ func populate_upgrade_list():
 			progress_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			progress_label.horizontal_alignment = Label.PRESET_CENTER
 			progress_container.add_child(progress_label)
-
+				
 			upgrade_container.add_child(progress_container)
 
 			# Add spacing through a control node, helps position the upgrade button

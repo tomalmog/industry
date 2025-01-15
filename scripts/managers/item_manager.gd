@@ -6,6 +6,9 @@
 # Description: Manages item behaviors, including spawning, movement, deletion, and interactions with buildings.
 extends Node
 
+# current state of inventory manager
+var state = WorldManager.GAMEPLAY_STATE
+
 # Item types categorized by group
 const ORE = 0
 const GOLD_ORE = 10
@@ -34,7 +37,7 @@ var items: Array[Item]  # List of all items in the game
 
 # pre: none
 # post: none
-# description: Initializes item instances and prepares the game state for gameplay.
+# description: Initializes item instances and prepares the game state for gameplay
 func _ready():
 	items = []
 
@@ -65,70 +68,84 @@ func stop_item_movement():
 # pre: none
 # post: none
 # description: Handles the movement of all items during each game tick. 
-# this function performs an iterative depth-first search to determine valid item movements through the  belt network
-# It ensures items are moved to the next valid position, updates their state, and resolves any collisions or movement constraints
+# this function performs an iterative depth first search to determine valid item movements through the  belt network
+# it ensures items are moved to the next valid position, updates their state, and resolves any collisions or movement constraints
 func _on_tick():
-	var visited_items = {}  # tracks items that have already been processed during this tick
-	stop_item_movement()  # reset item movement and snap them to their storage positions
-
-	# iterate through all items in the game
+	# reset item movement
+	stop_item_movement()
+	
+	# dictionary to keep track of visited items
+	var visited_items = {}
+	
+	# loop through all items
 	for item in items:
-		if visited_items.has(item):  # skip items that have already been processed
-			continue
+		
+		# dictionary to track visited buildings
+		var visited_buildings = {} 
+		
+		# if the item has not been visited before, run the DFS to see if it can move forward
+		if not visited_items.has(item): 
+			# stack to process buildings in the DFS
+			var building_stack = [item.stored_by] 
+			
+			# list to hold the current chain of item movements 
+			var chain = []                
 
-		# initialize stacks and tracking structures for the DFS process
-		var building_stack = [item.get_stored_by()]  # stack of buildings to go through
-		var chain = []  # tracks the movement chain for this item
-		var visited_buildings = {}  # tracks buildings visited during this item's DFS
+			# run DFS to check which items can move
+			while building_stack.size() > 0:
+				# Pop a building from the stack and get the item stored in that building
+				var building = building_stack.pop_back()  
+				var current_item = building.stored_item  
+				
+				# if the building has already been visited, skip it
+				if visited_buildings.has(building):
+					break
+				# if the item has already been visited, skip it
+				if visited_items.has(current_item):
+					continue
+				
+				# make sure building is not null
+				if building:
+					# get the next belt position based on the belt's output direction
+					var next_pos = building.get_next()
+					var next_building = BuildingManager.get_building(next_pos)
+					
+					# add the current item and next position to the movement chain
+					chain.push_back([current_item, next_pos])
+					
+					# mark the item as visited and mark the building as visited
+					visited_items[current_item] = true  
+					visited_buildings[building] = true  
 
-		# perform DFS to calculate the movement chain for the item
-		while building_stack.size() > 0:
-			var building = building_stack.pop_back()  # get the next building to process
-			var current_item = building.get_stored_item()  # get the item stored at the current building
-
-			if visited_buildings.has(building):  # avoid processing the same building twice
-				break
-			if visited_items.has(current_item):  # skip if the item was already processed
-				continue
-
-			# determine the next position and building in the chain
-			var next_pos = building.get_next()  # calculate the next position based on building logic
-			var next_building = BuildingManager.get_building(next_pos)  # get the building at the next position
-
-			# record the item and its next position in the movement chain
-			chain.push_back([current_item, next_pos])
-			visited_items[current_item] = true  # mark the item as processed
-			visited_buildings[building] = true  # mark the building as visited
-
-			# Stop if there are no more valid movements for the item
-			if next_building == null or current_item == null or next_building.get_type() == BuildData.HARVESTER_ID:
-				break
-
-			# If the next building can accept the item, add the building to the stack for so that the DFS can continue to search through that added building
-			if next_building.can_accept_item(current_item, building.get_direction() * -1):
-				# push the building onto the stop
-				building_stack.push_back(next_building)
-
-		# process the chain of movements calculated by the DFS
-		for pair in chain:
-			move_item_to_next_tile(pair[0], pair[1])
-
+					# if there is no next building or the item is stored by a harvester (cant accept items), stop the chain
+					if next_building == null or current_item == null or next_building.get_type() == BuildData.HARVESTER_ID:
+						break
+						
+					# push the next building onto the stack so that it can be explored once the DFS continues
+					building_stack.push_back(next_building)
+					
+					# check if the next building can accept the item
+					if next_building and next_building.can_accept_item(current_item, building.output_direction * -1):
+						# move the item along the chain from the last to the first
+						for i in range(chain.size() - 1, -1, -1):
+							var pair = chain[i]
+							move_item_to_next_tile(pair[0], pair[1])
+							
 # pre: item is valid, next_pos is a valid position
 # post: none
-# description: Moves the specified item to the next tile.
+# description: Moves the specified item to the next tile
 func move_item_to_next_tile(item: Item, next_pos: Vector2) -> void:
 	if item != null:
 		WorldManager.move_stored_item(item.get_stored_by(), BuildingManager.get_building(next_pos))
 
 # pre: type is a valid item type, building is a valid Building object that the item will be added to
 # post: returns the spawned item
-# description: Spawns a new item of the specified type at the given building.
+# description: Spawns a new item of the specified type at the given building
 func spawn_item(type: int, building: Building):
 	# instantiates new item
 	var new_item = item_instances[type].instantiate()
 	
 	# set properties
-	new_item.set_type(type)
 	new_item.spawn_at_building(building)
 
 	# add item to items list and add it to node tree
@@ -140,7 +157,7 @@ func spawn_item(type: int, building: Building):
 
 # pre: item is a valid Item object
 # post: none
-# description: Deletes the specified item from the game.
+# description: Deletes the specified item from the game
 func delete_item(item: Item):
 	# gets rid of reference to item from its building
 	item.get_stored_by().set_stored_item(null)
@@ -151,12 +168,29 @@ func delete_item(item: Item):
 
 # pre: none
 # post: returns the list of all items in the game
-# description: Retrieves the list of all items.
+# description: retrieves the list of all items
 func get_items():
 	return items
 
 # pre: none
 # post: returns the dictionary of item instances
-# description: Retrieves the dictionary of item instances.
+# description: Retrieves the dictionary of item instances
 func get_item_instances():
 	return item_instances
+
+# pre: none
+# post: returns the current state of the item manager
+# description: returns item manager state
+func get_state():
+	return state
+	
+# pre: new state is a valid integer state
+# post: none
+# description: sets the item manager state
+func set_state(new_state: int):
+	state = new_state
+	if state == WorldManager.GAMEPLAY_STATE:
+		for item in items:
+			item.set_visibility(true)
+	else:
+		stop_item_movement()

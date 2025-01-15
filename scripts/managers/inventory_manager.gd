@@ -114,3 +114,13 @@ func get_inventory_count(type: int):
 # description: returns the entire inventory dictionary
 func get_inventory():
 	return inventory
+
+# pre: takes in a valid item to add to the inventory
+# post: none
+# description: adds an item to inventory
+func add_to_inventory(item: Item):
+	var type = item.get_type()
+	if inventory.has(type):
+		inventory[type] += 1
+	else:
+		inventory[type] = 1

@@ -95,7 +95,7 @@ func get_type():
 # pre: new_type is the desired new type of the item
 # post: none
 # description: sets the new type of the item
-func set_type(new_type: bool):
+func set_type(new_type: int):
 	type = new_type
 
 # pre: visibility is the desired visibility of the item
@@ -119,7 +119,7 @@ func set_is_moving(new_is_moving: bool):
 # pre: new_was_moved is a valid boolean value
 # post: none
 # description: sets the was_moved property to the specified value
-func set_was_moved(new_was_moved):
+func set_was_moved(new_was_moved: bool):
 	was_moved = new_was_moved
 
 # pre: none

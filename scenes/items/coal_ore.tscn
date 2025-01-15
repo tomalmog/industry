@@ -5,3 +5,4 @@
 
 [node name="Coal Ore" instance=ExtResource("1_nfrq4")]
 texture = ExtResource("2_qojl0")
+type = 49

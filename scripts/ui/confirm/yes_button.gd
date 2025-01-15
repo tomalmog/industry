@@ -1,6 +1,5 @@
 extends Button
 
-
 # Pre: none
 # Post: none
 # Description: connects clear game function to self.pressed

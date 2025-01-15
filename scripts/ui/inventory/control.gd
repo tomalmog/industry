@@ -1,3 +1,9 @@
+# Author: Tom Almog
+# File Name: control.gd
+# Project Name: Industry
+# Creation Date: 1/10/2025
+# Modified Date: 1/14/2025
+# Description: script for the inventory control node, handles populating the updated inventory, and has ability to sort and search through inventory
 extends Control
 
 # define needed variables
@@ -44,7 +50,7 @@ func on_search_text_changed(new_text):
 
 		# loop through the inventory and filter keys by matching the search query
 		for key in inventory:
-			var item_name = ItemManager.item_instances[key].instantiate().name
+			var item_name = ItemManager.get_item_instances()[key].instantiate().name
 			# checks if the searched term can be found in the item name, if yes, add it to valid keys
 			if item_name.to_lower().find(new_text.to_lower()) != -1: 
 				filtered_keys.append(key)
@@ -60,7 +66,7 @@ func populate_item_list(inventory, sorted_keys):
 	
 	var counter = 0
 	for key in sorted_keys:
-		var item_scene = ItemManager.item_instances[key].instantiate()
+		var item_scene = ItemManager.get_item_instances()[key].instantiate()
 		item_list.add_item(str(item_scene.name + " X " + str(inventory[key])), item_scene.texture)
 		counter += 1
 
@@ -72,7 +78,7 @@ func on_sort_option_selected(index):
 	inventory = InventoryManager.get_inventory()
 	search_bar.text = ""
 	
-	# sort by name if option is selected
+	# sort by name if option is selected or sort by quantity if option is selected
 	if index == SORT_BY_NAME:  
 		var sorted_keys = inventory.keys()
 		
@@ -82,7 +88,6 @@ func on_sort_option_selected(index):
 		# repopulate the item list with the sorted inventory
 		populate_item_list(inventory, sorted_keys)
 	
-	# sort by quantity if option is selected
 	elif index == SORT_BY_QUANTITY:  
 		var sorted_keys = inventory.keys()
 
@@ -116,24 +121,33 @@ func merge_sort(arr, compare_func):
 # Post: returns a merged sorted array
 # Description: merges two sorted arrays into one sorted array based on a comparison function
 func merge(left, right, compare_func):
+	# initialize an empty array to store the merged result
 	var result = []
+	# initialize indices for iterating through the left and right arrays
 	var i = 0
 	var j = 0
 	
-	# merge the arrays while comparing elements using compare_func
+	# iterate through both arrays until one of them is fully traversed
 	while i < left.size() and j < right.size():
-		# use .call here because godot has weird behaviors when passing functions 
-		if compare_func.call(left[i], right[j]): 
+		# use the compare_func to decide which element to append to the result
+		# .call is used because godot has weird behaviors when passing functions, cannot simply add () to call it
+		if compare_func.call(left[i], right[j]):
+			# append the current element from the left array if it satisfies the comparison and move to next element
 			result.append(left[i])
 			i += 1
+			
 		else:
+			# append the current element from the right array if it does not satisfy the comparison and move to next element
 			result.append(right[j])
 			j += 1
 	
-	# append any remaining elements
+	# append any remaining elements from the left array to the result, this happens if the right array is fully traversed before the left array
 	result.append_array(left.slice(i, left.size()))
+	
+	# append any remaining elements from the right array to the result, this happens if the left array is fully traversed before the right array
 	result.append_array(right.slice(j, right.size()))
 	
+	# return the fully merged and sorted array
 	return result
 	
 # Pre: left and right are item keys from the inventory
@@ -144,10 +158,10 @@ func compare_by_quantity(left: int, right: int):
 
 # Pre: left and right are item keys from the inventory
 # Post: returns true if left item name is alphabetically before right
-# Description: comparison function for sorting by name
+# Description: comparison function for sorting by name alphabetically 
 func compare_by_name(left: int, right: int):
-	var left_name = ItemManager.item_instances[left].instantiate().name.to_lower()
-	var right_name = ItemManager.item_instances[right].instantiate().name.to_lower()
+	var left_name = ItemManager.get_item_instances()[left].instantiate().name.to_lower()
+	var right_name = ItemManager.get_item_instances()[right].instantiate().name.to_lower()
 	
 	# compare the names in alphabetical order
 	return left_name < right_name

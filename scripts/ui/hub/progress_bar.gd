@@ -1,6 +1,6 @@
 extends ProgressBar
 
-# Pre: none
+# Pre: delta is time passed since last call
 # Post: none
 # Description: update progress bar based on current quest progress
 func _process(delta: float):

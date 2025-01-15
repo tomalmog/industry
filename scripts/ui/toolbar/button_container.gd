@@ -1,43 +1,54 @@
 extends HBoxContainer
 
-var ids = [2, 3, 4, 5, 6, 9]
-var counter = 0
+# list of building ids corresponding to buttons
+var BD = BuildData
+var ids = [BD.BELT_ID, BD.HARVESTER_ID, BD.SMELTER_ID, BD.HAMMER_ID, BD.CUTTER_ID, BD.TRASH_ID]
+var counter = 0  # tracks the index of the current button
 
+# dictionary to store textures for buildings
 var textures = {}
 
-# Hover colors
-var original_color: Color = Color("99999900")  # Default background color
-var hover_color: Color = Color("8B8F9E80")  # Hover background color
+# hover colors for panel backgrounds
+var original_color: Color = Color("99999900") 
+var hover_color: Color = Color("8B8F9E80")  
 
-# Called when the node enters the scene tree for the first time.
+# Pre: none
+# Post: none
+# Description: initializes the container, setting up button connections and hover effects
 func _ready():
-	# Iterate over each Panel in the HBoxContainer
+	# iterate over each panel in the HBoxContainer
 	for panel in get_children():
-		var texture_button = panel.get_children()[0]  # Assuming the TextureButton is the first child of the Panel
-		# Connect the button press signal to the _button_pressed function, passing the corresponding building ID
+		# retrieve the TextureButton within the panel
+		var texture_button = panel.get_children()[0]  # assumes TextureButton is the first child of the panel
+		
+		# assign the current id to the button and connect its pressed signal
 		var id = ids[counter]
-		texture_button.pressed.connect(func(): _button_pressed(id))
+		texture_button.pressed.connect(func(): button_pressed(id))
 		
-		# Connect hover signals for the panel
-		panel.mouse_entered.connect(func(): _on_panel_mouse_entered(panel))
-		panel.mouse_exited.connect(func(): _on_panel_mouse_exited(panel))
+		# connect hover signals for the panel
+		panel.mouse_entered.connect(func(): on_panel_mouse_entered(panel))
+		panel.mouse_exited.connect(func(): on_panel_mouse_exited(panel))
 		
-		
+		# set the button's texture to the corresponding building icon
 		texture_button.texture_normal = BuildData.get_building_icon(id)
 		
-		
-		
+		# increment the counter to process the next id
 		counter += 1
-	pass
 
-func _button_pressed(building_id: int):
-	# Call the build selection function with the correct building ID
+# Pre: building_id is a valid id corresponding to a building
+# Post: none
+# Description: handles the logic when a button is pressed, selecting the appropriate building
+func button_pressed(building_id: int):
 	BuildSelection.building_selected(building_id)
 
-# Handle hover when mouse enters a panel
-func _on_panel_mouse_entered(panel: Panel):
+# Pre: panel is a valid Panel node
+# Post: none
+# Description: updates the panel's background color when hovered over
+func on_panel_mouse_entered(panel: Panel):
 	panel.get_theme_stylebox("panel").bg_color = hover_color
 
-# Handle hover when mouse exits a panel
-func _on_panel_mouse_exited(panel: Panel):
+# Pre: panel is a valid Panel node
+# Post: none
+# Description: restores the panel's original background color when the hover ends
+func on_panel_mouse_exited(panel: Panel):
 	panel.get_theme_stylebox("panel").bg_color = original_color

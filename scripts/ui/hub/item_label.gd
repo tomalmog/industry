@@ -10,5 +10,5 @@ func _ready():
 # Post: none
 # Description: gets current quest item and sets the label text to item name
 func update_quest_item():
-	var item_scene = ItemManager.item_instances[InventoryManager.get_quest_item()].instantiate()
+	var item_scene = ItemManager.get_item_instances()[InventoryManager.get_quest_item()].instantiate()
 	text = item_scene.name

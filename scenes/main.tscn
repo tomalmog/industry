@@ -285,7 +285,6 @@ subpixel_positioning = 0
 [node name="BackgroundLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_1cmdt")
 script = ExtResource("3_5ls8h")
-chunk_size = null
 
 [node name="ResourceLayer" type="TileMapLayer" parent="."]
 modulate = Color(1, 1, 1, 0.54902)

@@ -41,8 +41,8 @@ func _ready():
 	update_tutorial_text()
 
 	# connect button signals
-	back_button.pressed.connect(_on_back_pressed)
-	next_button.pressed.connect(_on_next_pressed)
+	back_button.pressed.connect(on_back_pressed)
+	next_button.pressed.connect(on_next_pressed)
 
 # Pre: none
 # Post: none
@@ -64,7 +64,7 @@ func update_tutorial_text():
 # Pre: none
 # Post: none
 # Description: move back a tutorial step
-func _on_back_pressed():
+func on_back_pressed():
 	# move back if possible
 	if current_step > 0:
 		current_step -= 1
@@ -73,7 +73,7 @@ func _on_back_pressed():
 # Pre: none
 # Post: none
 # Description: moves forward a tutorial step
-func _on_next_pressed():
+func on_next_pressed():
 	# if on the last step, finish the tutorial and hide panel
 	if current_step >= tutorial_texts.size() - 1:
 		tutorial_panel.visible = false

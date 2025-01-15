@@ -1,6 +1,6 @@
 extends Label
 
-# Pre: none
+# Pre: delta is time passed since last call
 # Post: none
 # Description: updates progress label text based on quest
 func _process(delta: float):

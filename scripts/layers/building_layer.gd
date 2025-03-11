@@ -12,6 +12,10 @@ var toolbar_panel: Panel
 var options_control: Control
 var hub_size = WorldManager.HUB_SIZE
 
+#load sound managers
+@onready var place_sound = preload("res://assets/audio/place.mp3")
+@onready var delete_sound = preload("res://assets/audio/delete.mp3")
+
 # pre: none
 # post: nones
 # description: initializes the tile map layer and sets up the buildings based on their positions
@@ -50,7 +54,19 @@ func _process(delta: float):
 	if Input.is_action_pressed("left_click"): 
 		if BuildData.get_current_tile_id() != BuildData.NO_SELECTION:
 			if grid_position.x < -hub_size or grid_position.x >= hub_size or grid_position.y < -hub_size or grid_position.y >= hub_size:
+				# store data for tile that was previously there to see if place audio should be played
+				var prev_building = BuildingManager.get_building(grid_position)
+				var prev_type: int = -1
+				
+				if prev_building:
+					prev_type = prev_building.get_type()
+					
+				# place building
 				place_building(grid_position, BuildData.get_current_tile_id())
+				
+				# if the type of building on the tile has changed with this place, play the place sound
+				if prev_type != BuildData.get_current_tile_id():
+					AudioManager.play_sound(place_sound)
 
 	# handle right click for building deletion and deselection
 	if Input.is_action_just_released("right_click"):
@@ -66,7 +82,19 @@ func _process(delta: float):
 			BuildData.set_current_tile_id(BuildData.NO_SELECTION)
 			unselected_last_click = true
 		else:
+			# store data for tile that was previously there to see if delete audio should be played
+			var prev_building = BuildingManager.get_building(grid_position)
+			var prev_type: int = -1
+				
+			if prev_building:
+				prev_type = prev_building.get_type()
+			
+			# delete tile
 			delete_tile(grid_position)
+			
+			# if the type of building on the tile has changed with this place, play the place sound
+			if prev_type != BuildData.get_current_tile_id():
+				AudioManager.play_sound(delete_sound)
 
 # pre: grid_position is the position to place the building, id is the building type
 # post: none

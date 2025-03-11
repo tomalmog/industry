@@ -28,10 +28,10 @@ func _ready():
 	
 	# initialize the upgrade requirements for each building type
 	upgrade_requirements = {
-		BD.HARVESTER_ID: [[IM.GOLD_ORE, 100], [IM.GOLD_ORE, 250]],
-		BD.SMELTER_ID: [[IM.BRONZE_ORE, 100], [IM.BRONZE_ORE, 250]],
-		BD.HAMMER_ID: [[IM.GOLD_INGOT, 100], [IM.IRON_INGOT, 200]],
-		BD.CUTTER_ID: [[IM.GOLD_CUT, 100], [IM.IRON_CUT, 250]]
+		BD.HARVESTER_ID: [[IM.GOLD_ORE, 250], [IM.GOLD_ORE, 500]],
+		BD.SMELTER_ID: [[IM.BRONZE_ORE, 150], [IM.BRONZE_ORE, 300]],
+		BD.HAMMER_ID: [[IM.IRON_INGOT, 150], [IM.IRON_INGOT, 300]],
+		BD.CUTTER_ID: [[IM.BRONZE_CUT, 100], [IM.GOLD_CUT, 200]]
 	}
 
 # pre: none

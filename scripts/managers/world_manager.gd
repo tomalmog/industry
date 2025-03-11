@@ -5,6 +5,49 @@
 # Modified Date: 1/14/2025
 # Description: manages the game state, camera data, and interactions between game entities. controls game ticks and handles building and item operations
 # this script acts as the "main.cs" for my program
+
+### COURSE CONTENT (6/7)
+
+### OBJECT ORIENTED
+### classes and objects are used everywhere throughout the program, most notably through the item and building classes
+### inheritance present in all buildings as they derive from either the building class or transform_building class
+### most buildings have some polymorphic method implemented
+
+### 2D ARRAYS / LISTS / COLLECTIONS
+### all tilemap and building information is stored in a dictionary that represents the 2D array that is the grid system
+### all inventory data is stored in a dictionary containing a key of the item and a value of the amount that is stored
+### items are stored in a list
+### dictionaries used consistently throughout the program 
+### notable uses include BuildingManager's building dictionary, InventoryManager's inventory, ItemManager's items
+### ^^^ examples of use cases, can all be found in the scripts/managers folder
+
+### FILE IO
+### file io is used in the scripts/managers/save_data_manager.gd script
+### this script allows for the saving, loading, and clearing of all game data
+### there are buttons on screen to invoke this manager, the player can save their current game and delete their current save
+### any saved data is loaded on startup
+### autosave runs every minute incase the player forgets to manually save
+
+### SORTING / SEARCHING
+### sorting and searching used in the scripts/ui/inventory/control.gd script
+### the player has the ability to sort the items present in their inventory based on either amount that they have, or alphabetic name of the item
+### the player can also search for a specific item / item type by using the search bar and entering the item they are looking for
+### the sorting is done using a recursive merge sort algorithm that accepts a comparison operator, so it can sort based on any metric
+### the searching is done by filtering the items based on whether the searched term is contained in the item name
+
+### RECURSION
+### recursion is used in the scripts/ui/inventory/control.gd script
+### used to implement merge sort
+
+### STACKS / QUEUES
+### stacks used in the scripts/managers/item_manager.gd script in the _on_tick() function
+### the item manager script handles the movements of all items that are in the game
+### for this to happen, it iterates through all items and performs a depth first search on their paths to see if they are able to move forward
+### the depth first search uses a stack to keep track of the buildings that need to be checked to see if the item can move forward
+### once the dfs reaches a building that has space for the items, the dfs is stopped and all items are moved forward
+### if there are no more avaiable buildings to check in the stack, the dfs naturally ends
+### algorithm explained in more detail in the comments on the item_manager.gd script itself
+
 extends Node2D
 
 # timer data

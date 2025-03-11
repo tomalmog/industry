@@ -24,3 +24,6 @@ func open_inventory():
 	# this ensures that items in the world are hidden while the upgrades scene is active
 	for item in ItemManager.get_items():
 		item.set_visibility(false)
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

@@ -13,7 +13,7 @@ class_name Hammer
 # description: initializes the hammer building
 func initialize(rotation: int):
 	# sets inputs based on rotation, where input direction is adjusted by the rotation
-	inputs = {BuildData.DIRECTIONS[(rotation + 2) % 4]: 1}
+	inputs = {BuildData.DIRECTIONS[(rotation + BuildData.DIRECTION_INCREMENT * 2) % BuildData.DIRECTION_COUNT]: ItemManager.NUGGET}
 	
 	# sets building type to HAMMER_ID
 	type = BuildData.HAMMER_ID

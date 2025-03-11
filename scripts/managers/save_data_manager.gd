@@ -10,7 +10,7 @@ extends Node
 const SAVE_FILE_PATH = "save_data/game_data.json"
 
 # Set up amount of ticks between autosaves, at 4 ticks a second, this autosaves every minute
-var ticks_between_autosaves = 240
+const TICKS_BETWEEN_AUTOSAVES = 240
 var tick_counter = 0
 
 # Placeholder for the game data to save
@@ -20,7 +20,7 @@ var game_data: Dictionary = {}
 # post: none
 # description: called every tick to check if it's time to save the game data
 func _on_tick():
-	if tick_counter >= ticks_between_autosaves:
+	if tick_counter >= TICKS_BETWEEN_AUTOSAVES:
 		# save game data and reset counter
 		save_game_data()
 		tick_counter = 0

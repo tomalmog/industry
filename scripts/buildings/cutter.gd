@@ -13,6 +13,9 @@ class_name Cutter
 # description: initializes the cutter building, setting its type, operation intervals, and inputs
 # updates operation interval based on building level
 func initialize(rotation: int):
+	# sets inputs based on rotation, where input direction is adjusted by the rotation
+	inputs = {BuildData.DIRECTIONS[(rotation + BuildData.DIRECTION_INCREMENT * 2) % BuildData.DIRECTION_COUNT]: ItemManager.INGOT}
+	
 	# sets building type to CUTTER_ID
 	type = BuildData.CUTTER_ID
 	
@@ -22,5 +25,4 @@ func initialize(rotation: int):
 	# sets the operation interval based on the building's current level
 	operation_interval = operation_intervals[UpgradeManager.get_building_level(type)]
 	
-	# sets inputs based on rotation, where input direction is adjusted by the rotation
-	inputs = {BuildData.DIRECTIONS[(rotation + 2) % 4]: 2}
+	

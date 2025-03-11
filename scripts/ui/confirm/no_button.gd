@@ -13,3 +13,6 @@ func hide_panel():
 	# get parent node and hide it
 	var panel = get_parent()
 	panel.hide()
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

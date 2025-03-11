@@ -48,5 +48,5 @@ func building_selected(building_id: int):
 func rotate_selected_tile():
 	BuildData.set_current_tile_rotation(
 		BuildData.get_current_tile_id(),
-		(BuildData.get_current_tile_rotation(BuildData.get_current_tile_id()) + 1) % 4
+		(BuildData.get_current_tile_rotation(BuildData.get_current_tile_id()) + BuildData.DIRECTION_INCREMENT) % BuildData.DIRECTION_COUNT
 	)

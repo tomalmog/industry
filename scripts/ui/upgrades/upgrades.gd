@@ -165,3 +165,6 @@ func on_claim_button_pressed(item_id: int, building: int, required: int):
 
 		# Reload the upgrade list to reflect changes
 		populate_upgrade_list()
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

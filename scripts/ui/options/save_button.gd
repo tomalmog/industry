@@ -10,4 +10,8 @@ func _ready():
 # Post: saves the game data
 # Description: handles the process of saving game data when the save button is pressed
 func save_game_data():
+	# save game data
 	SaveDataManager.save_game_data()
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

@@ -13,16 +13,23 @@ var inventory: Dictionary  # Stores the inventory with item types as keys and co
 var quests = [
 	[IM.GOLD_ORE, 50], 
 	[IM.IRON_ORE, 150], 
-	[IM.GOLD_NUGGET, 50], 
-	[IM.BRONZE_NUGGET, 100], 
+	[IM.BRONZE_ORE, 200], 
+	[IM.BRONZE_NUGGET, 150], 
+	[IM.COAL, 300],
 	[IM.BRONZE_INGOT, 150],
-	[IM.IRON_INGOT, 200],
-	[IM.BRONZE_INGOT, 150],
-	[IM.BRONZE_INGOT, 150]
+	[IM.IRON_NUGGET, 300],
+	[IM.IRON_INGOT, 300],
+	[IM.GOLD_NUGGET, 300],
+	[IM.GOLD_INGOT, 400],
+	[IM.GOLD_CUT, 500],
+	[IM.BRONZE_CUT, 500],
+	[IM.IRON_CUT, 500]
 ]
 
+# amount of quests in the game
+const QUEST_AMOUNT = 13
+
 var quests_completed: int  # Tracks the number of completed quests
-var curr_quest: Array  # Current quest as an array [item, required quantity]
 
 # UI elements
 var item_label: Label  # Label displaying the current quest item
@@ -35,7 +42,6 @@ func _ready():
 	# reset relevent data
 	inventory = {}
 	quests_completed = 0
-	curr_quest = quests[quests_completed]
 	
 	# reload nodes
 	reload()
@@ -63,10 +69,10 @@ func _process(delta: float):
 		# remove the amount of required items from inventory
 		inventory[item] -= required
 		
-		# ensure that UI nodes are loaded, then update
+		# ensure that UI nodes are loaded and updated
 		if !item_label:
 			reload()
-		
+			
 		item_label.update_quest_item()
 		item_texture.update_quest_item()
 
@@ -74,13 +80,14 @@ func _process(delta: float):
 # post: returns the item ID for the current quest
 # description: retrieves the item type for the current quest
 func get_quest_item():
-	return quests[quests_completed][0]
+	return quests[quests_completed % QUEST_AMOUNT][0]
 
 # pre: none
 # post: returns the required quantity for the current quest
-# description: retrieves the item quantity required for the current quest
+# description: retrieves the item quantity required for the current quest. if quests have started repeating, multiply by 10 ^ times this quest has repeated
 func get_quest_requirement():
-	return quests[quests_completed][1]
+	var requirement = quests[quests_completed % QUEST_AMOUNT][1] * pow(10, quests_completed / QUEST_AMOUNT)
+	return requirement
 
 # pre: none
 # post: returns the number of quests completed
@@ -93,6 +100,8 @@ func get_quests_completed():
 # description: sets the number of quests completed
 func set_quests_completed(completed: int):
 	quests_completed = completed
+	item_label.update_quest_item()
+	item_texture.update_quest_item()
 
 # pre: type is the item type, count is the new inventory count for that type
 # post: none

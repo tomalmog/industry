@@ -12,6 +12,9 @@ class_name Smelter
 var has_coal: bool  # flag indicating if the smelter has coal ready for processing
 var has_ore: bool  # flag indicating if the smelter has ore ready for processing
 
+# initalize unique input variable because smelter can accept multiple inputs from all directions
+var input_directions
+
 # pre: rotation is the initial rotation of the smelter
 # post: none
 # description: initializes the smelter building, setting up inputs, operation intervals, and generating state
@@ -21,9 +24,13 @@ func initialize(rotation: int):
 	has_ore = false
 	is_generating = false
 	
-	# Defines input directions and expected item types, ore and coal
-	inputs = {BuildData.DIRECTIONS[(rotation + 2) % 4]: ItemManager.ORE, BuildData.DIRECTIONS[(rotation + 3) % 4]: ItemManager.COAL}
-	
+	# define input directions
+	input_directions = [
+	BuildData.DIRECTIONS[(rotation + BuildData.DIRECTION_INCREMENT) % BuildData.DIRECTION_COUNT], 
+	BuildData.DIRECTIONS[(rotation + BuildData.DIRECTION_INCREMENT * 2) % BuildData.DIRECTION_COUNT],
+	BuildData.DIRECTIONS[(rotation + BuildData.DIRECTION_INCREMENT * 3) % BuildData.DIRECTION_COUNT]
+	]
+
 	# Sets the building type to SMELTER_ID
 	type = BuildData.SMELTER_ID
 	
@@ -35,11 +42,15 @@ func initialize(rotation: int):
 # post: returns true if the smelter can accept the item, false otherwise
 # description: checks if the smelter can accept the given item (coal or ore) from the specified input direction
 func can_accept_item(item: Item, input_direction: Vector2) -> bool:
-	if inputs.has(input_direction):
+	# check if this input direction is valid
+	if input_direction in input_directions:
+		# check if item type can be accepted
 		if item.get_type() == ItemManager.COAL and !has_coal:
 			return true
 		elif item.get_type() % 10 == ItemManager.ORE and !has_ore:
 			return true
+	
+	# return false if item is not accepted
 	return false
 
 # pre: none

@@ -69,6 +69,9 @@ func on_back_pressed():
 	if current_step > 0:
 		current_step -= 1
 		update_tutorial_text()
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()
 
 # Pre: none
 # Post: none
@@ -82,3 +85,6 @@ func on_next_pressed():
 		# move to the next tutorial step
 		current_step += 1
 		update_tutorial_text()
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

@@ -1,6 +1,5 @@
 extends TextureButton
 
-
 # set direction and cutoff for alphda modulation
 var direction = -1  
 var cutoff = 0.5  
@@ -52,3 +51,6 @@ func toggle_tutorial():
 		WorldManager.set_tutorial_data(true, 1)
 	else:
 		WorldManager.set_tutorial_data(false, 1)
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

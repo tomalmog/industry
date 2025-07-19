@@ -48,11 +48,11 @@ var building_icons: Dictionary
 # loading icons for all building types to be used in the UI
 func _ready():
 	# Load building icons
-	belt_icons = [preload("res://assets/icons/belt_one_icon.png"), preload("res://assets/icons/belt_two_icon.png"), preload("res://assets/icons/belt_three_icon.png")]
-	harvester_icons = [preload("res://assets/icons/harvester_one_icon.png"), preload("res://assets/icons/harvester_two_icon.png"), preload("res://assets/icons/harvester_three_icon.png")]
-	smelter_icons = [preload("res://assets/icons/smelter_one_icon.png"), preload("res://assets/icons/smelter_two_icon.png"), preload("res://assets/icons/smelter_three_icon.png")]
-	hammer_icons = [preload("res://assets/icons/hammer_one_icon.png"), preload("res://assets/icons/hammer_two_icon.png"), preload("res://assets/icons/hammer_three_icon.png")]
-	cutter_icons = [preload("res://assets/icons/cutter_one_icon.png"), preload("res://assets/icons/cutter_two_icon.png"), preload("res://assets/icons/cutter_three_icon.png")]
+	belt_icons = [preload("res://assets/icons/belt_icon.png"), preload("res://assets/icons/belt_two_icon.png"), preload("res://assets/icons/belt_three_icon.png")]
+	harvester_icons = [preload("res://assets/icons/harvester_icon.png"), preload("res://assets/icons/harvester_two_icon.png"), preload("res://assets/icons/harvester_three_icon.png")]
+	smelter_icons = [preload("res://assets/icons/smelter_icon.png"), preload("res://assets/icons/smelter_two_icon.png"), preload("res://assets/icons/smelter_three_icon.png")]
+	hammer_icons = [preload("res://assets/icons/hammer_icon.png"), preload("res://assets/icons/hammer_two_icon.png"), preload("res://assets/icons/hammer_three_icon.png")]
+	cutter_icons = [preload("res://assets/icons/cutter_icon.png"), preload("res://assets/icons/cutter_two_icon.png"), preload("res://assets/icons/cutter_three_icon.png")]
 	trash_icons = [preload("res://assets/icons/trash_icon.png")]
 	
 	# Map building types to their icons

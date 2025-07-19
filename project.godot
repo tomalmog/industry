@@ -26,6 +26,7 @@ ResourceManager="*res://scripts/managers/resource_manager.gd"
 InventoryManager="*res://scripts/managers/inventory_manager.gd"
 UpgradeManager="*res://scripts/managers/upgrade_manager.gd"
 SaveDataManager="*res://scripts/managers/save_data_manager.gd"
+AudioManager="*res://scripts/managers/audio_manager.gd"
 
 [display]
 

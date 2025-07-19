@@ -91,6 +91,9 @@ func on_sort_option_selected(index):
 
 		# repopulate the item list with the sorted inventory
 		populate_item_list(inventory, sorted_keys)
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()
 
 # Pre: arr is the array to be sorted, compare_func is the comparison function
 # Post: returns a sorted array

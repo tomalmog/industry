@@ -22,7 +22,7 @@ func initialize(rotation: int):
 	is_generating = false
 	
 	# Defines input directions and expected item types, ore and coal
-	inputs = {BuildData.DIRECTIONS[(rotation + 2) % 4]: ItemManager.ORE, BuildData.DIRECTIONS[(rotation + 3) % 4]: ItemManager.COAL}
+	inputs = {BuildData.DIRECTIONS[(rotation + 2) % 4]: ItemManager.ORE, BuildData.DIRECTIONS[(rotation + 1) % 4]: ItemManager.ORE, BuildData.DIRECTIONS[(rotation + 3) % 4]: ItemManager.COAL}
 	
 	# Sets the building type to SMELTER_ID
 	type = BuildData.SMELTER_ID

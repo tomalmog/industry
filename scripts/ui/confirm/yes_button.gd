@@ -3,7 +3,7 @@ extends Button
 # Pre: none
 # Post: none
 # Description: connects clear game function to self.pressed
-func _ready() -> void:
+func _ready():
 	pressed.connect(clear_game)
 
 # Pre: none
@@ -30,3 +30,6 @@ func clear_game():
 	
 	# hide the confirmation panel
 	get_parent().hide()
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

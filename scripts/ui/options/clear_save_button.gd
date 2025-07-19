@@ -18,3 +18,6 @@ func toggle_confirm_panel():
 	# get panel, then set its visibilty to the opposite of what it currently is
 	var panel = get_node("../../../ConfirmControl/Panel")
 	panel.visible = !panel.visible
+	
+	# play button clicked sound effect
+	AudioManager.play_button_click_sound()

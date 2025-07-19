@@ -1,14 +1,14 @@
 extends TileMapLayer
 
 # resource generation constants
-const RESOURCE_TYPES = [ItemManager.GOLD_ORE, ItemManager.IRON_ORE, ItemManager.BRONZE_ORE, ItemManager.COAL]
-const MAX_RESOURCES = 50  # total number of resources to spawn
+const RESOURCE_TYPES = [ItemManager.GOLD_ORE, ItemManager.IRON_ORE, ItemManager.BRONZE_ORE, ItemManager.COAL] # types
+const MAX_RESOURCES = 800  # total number of resources to spawn
 const MIN_DISTANCE = 6  # minimum distance between spawned resources
 const HUB_PADDING = 4 # min distance from hub
 const HUB_MARGIN = WorldManager.HUB_SIZE + HUB_PADDING
 
-var grid_min: Vector2 = Vector2(-25, -25)  # minimum grid boundary
-var grid_max: Vector2 = Vector2(25, 25)   # maximum grid boundary
+var grid_min: Vector2 = Vector2(-100, -100)  # minimum grid boundary
+var grid_max: Vector2 = Vector2(100, 100)   # maximum grid boundary
 
 var placed_positions = []  # keep track of placed positions to ensure spacing
 

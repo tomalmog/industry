@@ -6,7 +6,11 @@
 # Description: manages the game state, camera data, and interactions between game entities. controls game ticks and handles building and item operations
 # this script acts as the "main.cs" for my program
 
+<<<<<<< HEAD
 ### COURSE CONTENT (6/7)
+=======
+### CONTENT
+>>>>>>> 1c6af5a (Fixed music and sound volume. Added documentation. Fixed visual bugs)
 
 ### OBJECT ORIENTED
 ### classes and objects are used everywhere throughout the program, most notably through the item and building classes

@@ -16,6 +16,10 @@ func _ready() -> void:
 	# create music audio player and set its audio stream to the music
 	music_player = AudioStreamPlayer.new()
 	music_player.stream = music_stream
+<<<<<<< HEAD
+=======
+	music_player.volume_db = -20
+>>>>>>> 1c6af5a (Fixed music and sound volume. Added documentation. Fixed visual bugs)
 	
 	# being playing music and add audioplayer as child so that its always running
 	music_player.autoplay = true
@@ -31,6 +35,10 @@ func play_sound(sound: AudioStream):
 	
 	# Assign the sound and play it
 	audio_player.stream = sound
+<<<<<<< HEAD
+=======
+	audio_player.volume_db = -20
+>>>>>>> 1c6af5a (Fixed music and sound volume. Added documentation. Fixed visual bugs)
 	audio_player.play()
 	
 	# Queue the node for deletion once the sound is finished
@@ -47,6 +55,10 @@ func play_button_click_sound():
 	
 	# Assign the sound and play it
 	audio_player.stream = clicked_sound
+<<<<<<< HEAD
+=======
+	audio_player.volume_db = -20
+>>>>>>> 1c6af5a (Fixed music and sound volume. Added documentation. Fixed visual bugs)
 	audio_player.play()
 	
 	# Queue the node for deletion once the sound is finished

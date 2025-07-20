@@ -80,13 +80,21 @@ func _process(delta: float):
 # post: returns the item ID for the current quest
 # description: retrieves the item type for the current quest
 func get_quest_item():
+<<<<<<< HEAD
 	return quests[quests_completed % QUEST_AMOUNT][0]
+=======
+	return quests[quests_completed % 13][0]
+>>>>>>> 1c6af5a (Fixed music and sound volume. Added documentation. Fixed visual bugs)
 
 # pre: none
 # post: returns the required quantity for the current quest
 # description: retrieves the item quantity required for the current quest. if quests have started repeating, multiply by 10 ^ times this quest has repeated
 func get_quest_requirement():
+<<<<<<< HEAD
 	var requirement = quests[quests_completed % QUEST_AMOUNT][1] * pow(10, quests_completed / QUEST_AMOUNT)
+=======
+	var requirement = quests[quests_completed % 13][1] * pow(10, quests_completed / 13)
+>>>>>>> 1c6af5a (Fixed music and sound volume. Added documentation. Fixed visual bugs)
 	return requirement
 
 # pre: none
